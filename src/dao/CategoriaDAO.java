@@ -34,21 +34,4 @@ public class CategoriaDAO
             return false;
         }
     }
-    
-    public static void main(String[] args)
-    {
-        String nom = "Electronica.";
-        String desc = "Productos Electronicos.";
-        boolean valida = true;
-        Categoria nuevaCategoria = new Categoria(0, nom, desc);
-        valida = agregarCategoria(nuevaCategoria);
-        if (valida)
-        {
-            System.out.println("Se agrego correctamente");
-        }
-        else
-        {
-            System.out.println("No se agrego");
-        } 
-    }
 }
