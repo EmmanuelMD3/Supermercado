@@ -1,9 +1,15 @@
--- Creación de la base de datos
-CREATE DATABASE IF NOT EXISTS supermercado;
+
+-- Crear la base de datos
+CREATE DATABASE supermercado;
 USE supermercado;
 
+SHOW TABLES;
+DESC Categoria;
+SELECT * FROM categoria;
+
+
 -- Tabla de Categorías
-CREATE TABLE categorias (
+CREATE TABLE categoria(
     categoria_id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
     descripcion VARCHAR(255),
@@ -12,7 +18,7 @@ CREATE TABLE categorias (
 );
 
 -- Tabla de Proveedores
-CREATE TABLE proveedores (
+CREATE TABLE proveedore(
     proveedor_id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
     contacto VARCHAR(100),
@@ -23,10 +29,9 @@ CREATE TABLE proveedores (
     fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Tabla de Productos
-CREATE TABLE productos (
+-- Tabla de Productos (sin código de barras)
+CREATE TABLE producto(
     producto_id INT AUTO_INCREMENT PRIMARY KEY,
-    codigo_barras VARCHAR(20) UNIQUE NOT NULL,
     nombre VARCHAR(100) NOT NULL,
     descripcion VARCHAR(255),
     precio_compra DECIMAL(10, 2) NOT NULL,
@@ -36,37 +41,36 @@ CREATE TABLE productos (
     proveedor_id INT,
     activo BOOLEAN DEFAULT TRUE,
     fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (categoria_id) REFERENCES categorias(categoria_id) ON DELETE RESTRICT ON UPDATE CASCADE,
-    FOREIGN KEY (proveedor_id) REFERENCES proveedores(proveedor_id) ON DELETE RESTRICT ON UPDATE CASCADE
+    FOREIGN KEY (categoria_id) REFERENCES categoria(categoria_id) ON DELETE RESTRICT ON UPDATE CASCADE,
+    FOREIGN KEY (proveedor_id) REFERENCES proveedore(proveedor_id) ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
 -- Tabla de Clientes
-CREATE TABLE clientes (
+CREATE TABLE cliente(
     cliente_id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
     apellido VARCHAR(50) NOT NULL,
-    documento VARCHAR(20) UNIQUE,
     telefono VARCHAR(20),
     email VARCHAR(100) UNIQUE,
     direccion VARCHAR(255),
     fecha_nacimiento DATE,
+    password VARCHAR(255) NOT NULL,
     fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     activo BOOLEAN DEFAULT TRUE
 );
 
 -- Tabla de Roles
-CREATE TABLE roles (
+CREATE TABLE roles(
     rol_id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL UNIQUE,
     descripcion VARCHAR(255)
 );
 
--- Tabla de Empleados
-CREATE TABLE empleados (
+-- Tabla de Empleados (sin documento)
+CREATE TABLE empleado(
     empleado_id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
     apellido VARCHAR(50) NOT NULL,
-    documento VARCHAR(20) UNIQUE NOT NULL,
     telefono VARCHAR(20),
     email VARCHAR(100) UNIQUE,
     direccion VARCHAR(255),
@@ -80,7 +84,7 @@ CREATE TABLE empleados (
 );
 
 -- Tabla de Ventas
-CREATE TABLE ventas (
+CREATE TABLE venta(
     venta_id INT AUTO_INCREMENT PRIMARY KEY,
     fecha_venta TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     total DECIMAL(10, 2) NOT NULL,
@@ -90,8 +94,8 @@ CREATE TABLE ventas (
     empleado_id INT NOT NULL,
     metodo_pago ENUM('Efectivo', 'Tarjeta', 'Transferencia', 'Otro'),
     estado ENUM('Completada', 'Anulada', 'Pendiente') DEFAULT 'Completada',
-    FOREIGN KEY (cliente_id) REFERENCES clientes(cliente_id) ON DELETE RESTRICT ON UPDATE CASCADE,
-    FOREIGN KEY (empleado_id) REFERENCES empleados(empleado_id) ON DELETE RESTRICT ON UPDATE CASCADE
+    FOREIGN KEY (cliente_id) REFERENCES cliente(cliente_id) ON DELETE RESTRICT ON UPDATE CASCADE,
+    FOREIGN KEY (empleado_id) REFERENCES empleado(empleado_id) ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
 -- Tabla de Detalles de Venta
@@ -102,8 +106,8 @@ CREATE TABLE detalles_venta (
     cantidad INT NOT NULL,
     precio_unitario DECIMAL(10, 2) NOT NULL,
     subtotal DECIMAL(10, 2) NOT NULL,
-    FOREIGN KEY (venta_id) REFERENCES ventas(venta_id) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (producto_id) REFERENCES productos(producto_id) ON DELETE RESTRICT ON UPDATE CASCADE
+    FOREIGN KEY (venta_id) REFERENCES venta(venta_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (producto_id) REFERENCES producto(producto_id) ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
 -- Tabla de Inventario
@@ -112,30 +116,17 @@ CREATE TABLE inventario (
     producto_id INT NOT NULL,
     cantidad INT NOT NULL DEFAULT 0,
     fecha_actualizacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (producto_id) REFERENCES productos(producto_id) ON DELETE CASCADE ON UPDATE CASCADE
+    FOREIGN KEY (producto_id) REFERENCES producto(producto_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
--- Tabla de movimientos de inventario
-CREATE TABLE movimientos_inventario (
-    movimiento_id INT AUTO_INCREMENT PRIMARY KEY,
-    producto_id INT NOT NULL,
-    tipo_movimiento ENUM('Entrada', 'Salida') NOT NULL,
-    cantidad INT NOT NULL,
-    motivo VARCHAR(255),
-    empleado_id INT NOT NULL,
-    fecha_movimiento TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (producto_id) REFERENCES productos(producto_id) ON DELETE RESTRICT ON UPDATE CASCADE,
-    FOREIGN KEY (empleado_id) REFERENCES empleados(empleado_id) ON DELETE RESTRICT ON UPDATE CASCADE
-);
-
--- Tabla para asignación de permisos a roles
+-- Tabla de Permisos
 CREATE TABLE permisos (
     permiso_id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL UNIQUE,
     descripcion VARCHAR(255)
 );
 
--- Tabla intermedia para la relación muchos a muchos entre roles y permisos
+-- Relación muchos a muchos entre roles y permisos
 CREATE TABLE roles_permisos (
     rol_id INT NOT NULL,
     permiso_id INT NOT NULL,
@@ -144,10 +135,10 @@ CREATE TABLE roles_permisos (
     FOREIGN KEY (permiso_id) REFERENCES permisos(permiso_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
--- Añadir índices para mejorar el rendimiento
-CREATE INDEX idx_productos_nombre ON productos(nombre);
-CREATE INDEX idx_productos_categoria ON productos(categoria_id);
-CREATE INDEX idx_ventas_fecha ON ventas(fecha_venta);
-CREATE INDEX idx_ventas_cliente ON ventas(cliente_id);
-CREATE INDEX idx_ventas_empleado ON ventas(empleado_id);
+-- Índices para rendimiento
+CREATE INDEX idx_productos_nombre ON producto(nombre);
+CREATE INDEX idx_productos_categoria ON producto(categoria_id);
+CREATE INDEX idx_ventas_fecha ON venta(fecha_venta);
+CREATE INDEX idx_ventas_cliente ON venta(cliente_id);
+CREATE INDEX idx_ventas_empleado ON venta(empleado_id);
 CREATE INDEX idx_detalles_venta_producto ON detalles_venta(producto_id);

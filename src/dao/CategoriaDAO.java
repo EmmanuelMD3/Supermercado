@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dao;
 
 import conexion.Conexion;
@@ -14,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import modelo.Categoria;
 import java.util.Date;
+import java.sql.SQLException;
+import modelo.Categoria;
 
 /**
  *
@@ -24,12 +22,13 @@ public class CategoriaDAO
 
     public static boolean agregarCategoria(Categoria categoria)
     {
-        String sql = "INSERT INTO categoria (nombre, descripcion, activo) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO Categoria (id_categoria, nombre, descripccion, activo) VALUES (?, ?, ?, ?)";
         try (Connection conn = Conexion.conectar(); PreparedStatement pstmt = conn.prepareStatement(sql))
         {
-            pstmt.setString(1, categoria.getNombre());
-            pstmt.setString(2, categoria.getDescripccion());
-            pstmt.setBoolean(3, categoria.isActivo());
+            pstmt.setInt(1, categoria.getId_categoria());
+            pstmt.setString(2, categoria.getNombre());
+            pstmt.setString(3, categoria.getDescripccion());
+            pstmt.setBoolean(4, categoria.isActivo());
 
             pstmt.executeUpdate();
             return true;

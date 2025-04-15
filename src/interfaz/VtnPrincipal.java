@@ -41,17 +41,7 @@ public class VtnPrincipal extends javax.swing.JFrame
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout panelControlLayout = new javax.swing.GroupLayout(panelControl);
-        panelControl.setLayout(panelControlLayout);
-        panelControlLayout.setHorizontalGroup(
-            panelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1200, Short.MAX_VALUE)
-        );
-        panelControlLayout.setVerticalGroup(
-            panelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 560, Short.MAX_VALUE)
-        );
-
+        panelControl.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(panelControl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 560));
 
         jMenuBar1.setPreferredSize(new java.awt.Dimension(171, 30));
