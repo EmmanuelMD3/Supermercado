@@ -10,64 +10,57 @@ import java.util.Date;
  *
  * @author chemo
  */
-public class Cliente
+public class Provedor
 {
-    private int cliente_id;
+    private int provedor_id;
     private String nombre;
-    private String apellido;
+    private String contacto;
     private String telefono;
     private String email;
     private String direccion;
-    private Date fecha_nacimiento;
-    private String password;
-    private Date fecha_registro;
     private boolean activo;
+    private Date fecha_registro;
 
-    public Cliente()
+    public Provedor()
     {
     }
 
-    public Cliente(String nombre, String apellido, String telefono, String email, String direccion, Date fecha_nacimiento, String password, boolean activo)
+    public Provedor(String nombre, String contacto, String telefono, String email, String direccion, boolean activo)
     {
         this.nombre = nombre;
-        this.apellido = apellido;
+        this.contacto = contacto;
         this.telefono = telefono;
         this.email = email;
         this.direccion = direccion;
-        this.fecha_nacimiento = fecha_nacimiento;
-        this.password = password;
         this.activo = activo;
     }
 
-   
-    public Cliente(int cliente_id, String nombre, String apellido, String telefono, String email, String direccion, Date fecha_nacimiento, String password, Date fecha_registro, boolean activo)
+    public Provedor(int provedor_id, String nombre, String contacto, String telefono, String email, String direccion, boolean activo, Date fecha_registro)
     {
-        this.cliente_id = cliente_id;
+        this.provedor_id = provedor_id;
         this.nombre = nombre;
-        this.apellido = apellido;
+        this.contacto = contacto;
         this.telefono = telefono;
         this.email = email;
         this.direccion = direccion;
-        this.fecha_nacimiento = fecha_nacimiento;
-        this.password = password;
+        this.activo = activo;
         this.fecha_registro = fecha_registro;
-        this.activo = activo;
     }
 
     /**
-     * @return the cliente_id
+     * @return the provedor_id
      */
-    public int getCliente_id()
+    public int getProvedor_id()
     {
-        return cliente_id;
+        return provedor_id;
     }
 
     /**
-     * @param cliente_id the cliente_id to set
+     * @param provedor_id the provedor_id to set
      */
-    public void setCliente_id(int cliente_id)
+    public void setProvedor_id(int provedor_id)
     {
-        this.cliente_id = cliente_id;
+        this.provedor_id = provedor_id;
     }
 
     /**
@@ -87,19 +80,19 @@ public class Cliente
     }
 
     /**
-     * @return the apellido
+     * @return the contacto
      */
-    public String getApellido()
+    public String getContacto()
     {
-        return apellido;
+        return contacto;
     }
 
     /**
-     * @param apellido the apellido to set
+     * @param contacto the contacto to set
      */
-    public void setApellido(String apellido)
+    public void setContacto(String contacto)
     {
-        this.apellido = apellido;
+        this.contacto = contacto;
     }
 
     /**
@@ -151,35 +144,19 @@ public class Cliente
     }
 
     /**
-     * @return the fecha_nacimiento
+     * @return the activo
      */
-    public Date getFecha_nacimiento()
+    public boolean isActivo()
     {
-        return fecha_nacimiento;
+        return activo;
     }
 
     /**
-     * @param fecha_nacimiento the fecha_nacimiento to set
+     * @param activo the activo to set
      */
-    public void setFecha_nacimiento(Date fecha_nacimiento)
+    public void setActivo(boolean activo)
     {
-        this.fecha_nacimiento = fecha_nacimiento;
-    }
-
-    /**
-     * @return the password
-     */
-    public String getPassword()
-    {
-        return password;
-    }
-
-    /**
-     * @param password the password to set
-     */
-    public void setPassword(String password)
-    {
-        this.password = password;
+        this.activo = activo;
     }
 
     /**
@@ -196,21 +173,5 @@ public class Cliente
     public void setFecha_registro(Date fecha_registro)
     {
         this.fecha_registro = fecha_registro;
-    }
-
-    /**
-     * @return the activo
-     */
-    public boolean isActivo()
-    {
-        return activo;
-    }
-
-    /**
-     * @param activo the activo to set
-     */
-    public void setActivo(boolean activo)
-    {
-        this.activo = activo;
     }   
 }

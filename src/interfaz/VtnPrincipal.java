@@ -41,7 +41,17 @@ public class VtnPrincipal extends javax.swing.JFrame
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        panelControl.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        javax.swing.GroupLayout panelControlLayout = new javax.swing.GroupLayout(panelControl);
+        panelControl.setLayout(panelControlLayout);
+        panelControlLayout.setHorizontalGroup(
+            panelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1200, Short.MAX_VALUE)
+        );
+        panelControlLayout.setVerticalGroup(
+            panelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 560, Short.MAX_VALUE)
+        );
+
         getContentPane().add(panelControl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 560));
 
         jMenuBar1.setPreferredSize(new java.awt.Dimension(171, 30));
@@ -66,6 +76,13 @@ public class VtnPrincipal extends javax.swing.JFrame
         jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/servicio-al-cliente.png"))); // NOI18N
         jMenu4.setText("Clientes");
         jMenu4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jMenu4.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jMenu4MouseClicked(evt);
+            }
+        });
         jMenu1.add(jMenu4);
 
         jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/empleado-de-oficina.png"))); // NOI18N
@@ -81,6 +98,13 @@ public class VtnPrincipal extends javax.swing.JFrame
         jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/gestion.png"))); // NOI18N
         jMenu6.setText("Provedores");
         jMenu6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jMenu6.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jMenu6MouseClicked(evt);
+            }
+        });
         jMenu1.add(jMenu6);
 
         jMenuBar1.add(jMenu1);
@@ -97,6 +121,20 @@ public class VtnPrincipal extends javax.swing.JFrame
         VtnCategorias categorias = new VtnCategorias();
         panelControl.add(categorias).setVisible(true);
     }//GEN-LAST:event_jMenu3MouseClicked
+
+    private void jMenu4MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jMenu4MouseClicked
+    {//GEN-HEADEREND:event_jMenu4MouseClicked
+        panelControl.removeAll();
+        VtnClientes clientes = new VtnClientes();
+        panelControl.add(clientes).setVisible(true);
+    }//GEN-LAST:event_jMenu4MouseClicked
+
+    private void jMenu6MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jMenu6MouseClicked
+    {//GEN-HEADEREND:event_jMenu6MouseClicked
+        panelControl.removeAll();
+        VtnProvedores provedores = new VtnProvedores();
+        panelControl.add(provedores).setVisible(true);
+    }//GEN-LAST:event_jMenu6MouseClicked
 
     /**
      * @param args the command line arguments

@@ -22,7 +22,7 @@ public class CategoriaDAO
 
     public static boolean agregarCategoria(Categoria categoria)
     {
-        String sql = "INSERT INTO Categoria (id_categoria, nombre, descripccion, activo) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO Categoria (categoria_id, nombre, descripcion, activo) VALUES (?, ?, ?, ?)";
         try (Connection conn = Conexion.conectar(); PreparedStatement pstmt = conn.prepareStatement(sql))
         {
             pstmt.setInt(1, categoria.getId_categoria());
