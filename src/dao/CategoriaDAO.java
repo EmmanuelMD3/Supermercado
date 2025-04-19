@@ -134,4 +134,22 @@ public class CategoriaDAO
         }
     }
 
+    public int obtenerIdPorNombre(String nombre)
+    {
+        String sql = "SELECT categoria_id FROM categoria WHERE nombre = ?";
+        try (Connection conn = Conexion.conectar(); PreparedStatement pstmt = conn.prepareStatement(sql))
+        {
+            pstmt.setString(1, nombre);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next())
+            {
+                return rs.getInt("categoria_id");
+            }
+        } catch (SQLException e)
+        {
+            System.err.println("Error al obtener el ID: " + e.getMessage());
+        }
+        return -1;
+    }
+
 }
