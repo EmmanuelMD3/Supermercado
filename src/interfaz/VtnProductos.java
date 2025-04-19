@@ -34,6 +34,27 @@ public class VtnProductos extends javax.swing.JInternalFrame
         initComponents();
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
+        
+        buscar.getDocument().addDocumentListener(new javax.swing.event.DocumentListener()
+        {
+            @Override
+            public void insertUpdate(javax.swing.event.DocumentEvent e)
+            {
+                filtrarProductos();
+            }
+
+            @Override
+            public void removeUpdate(javax.swing.event.DocumentEvent e)
+            {
+                filtrarProductos();
+            }
+
+            @Override
+            public void changedUpdate(javax.swing.event.DocumentEvent e)
+            {
+                filtrarProductos();
+            }
+        });
     }
 
     /**
@@ -340,7 +361,7 @@ public class VtnProductos extends javax.swing.JInternalFrame
         String precioCompraStr = precioCompraJT.getText().trim();
         String precioVentaStr = precioVentaJT.getText().trim();
         int stockMinimo = (int) stockMinS.getValue();
-        int nuevaCantidadInventario = (int) stockInicialS.getValue(); 
+        int nuevaCantidadInventario = (int) stockInicialS.getValue();
         String categoriaSeleccionada = (String) categoriaCB.getSelectedItem();
         String proveedorSeleccionado = (String) provedorCB.getSelectedItem();
         boolean activo = activoCB.getSelectedItem().toString().equalsIgnoreCase("Activo");
@@ -509,6 +530,26 @@ public class VtnProductos extends javax.swing.JInternalFrame
         for (Object[] fila : productos)
         {
             modelo.addRow(fila);
+        }
+    }
+
+    public void filtrarProductos()
+    {
+        String textoBusqueda = buscar.getText().trim().toLowerCase();
+        DefaultTableModel modeloTabla = (DefaultTableModel) tablaProductos.getModel();
+
+        modeloTabla.setRowCount(0); 
+
+        ProductoDAO productoDAO = new ProductoDAO();
+        List<Object[]> productos = productoDAO.listarProductosConNombresYStock(); 
+
+        for (Object[] fila : productos)
+        {
+            String nombreProducto = fila[1].toString().toLowerCase();
+            if (nombreProducto.contains(textoBusqueda))
+            {
+                modeloTabla.addRow(fila);
+            }
         }
     }
 

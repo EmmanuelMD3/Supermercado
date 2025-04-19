@@ -105,7 +105,7 @@ public class ProductoDAO
                     rs.getString("nombre_proveedor"),
                     rs.getBoolean("activo") ? "Activo" : "Inactivo",
                     rs.getTimestamp("fecha_creacion"),
-                     rs.getInt("inventario")
+                    rs.getInt("inventario")
                 };
                 productos.add(fila);
             }
@@ -189,6 +189,46 @@ public class ProductoDAO
             System.err.println("Error al agregar producto: " + e.getMessage());
         }
         return -1;
+    }
+
+    public List<Object[]> listarProductosConNombresYStock()
+    {
+        List<Object[]> productos = new ArrayList<>();
+
+        String sql = "SELECT p.producto_id, p.nombre, p.descripcion, p.precio_compra, p.precio_venta, "
+                + "p.stock_minimo, c.nombre AS nombre_categoria, pr.nombre AS nombre_proveedor, "
+                + "p.activo, p.fecha_creacion, IFNULL(i.cantidad, 0) AS cantidad "
+                + "FROM producto p "
+                + "LEFT JOIN categoria c ON p.categoria_id = c.categoria_id "
+                + "LEFT JOIN provedor pr ON p.proveedor_id = pr.proveedor_id "
+                + "LEFT JOIN inventario i ON p.producto_id = i.producto_id";
+
+        try (Connection conn = Conexion.conectar(); PreparedStatement ps = conn.prepareStatement(sql); ResultSet rs = ps.executeQuery())
+        {
+            while (rs.next())
+            {
+                Object[] fila = new Object[]
+                {
+                    rs.getInt("producto_id"),
+                    rs.getString("nombre"),
+                    rs.getString("descripcion"),
+                    rs.getDouble("precio_compra"),
+                    rs.getDouble("precio_venta"),
+                    rs.getInt("stock_minimo"),
+                    rs.getString("nombre_categoria"),
+                    rs.getString("nombre_proveedor"),
+                    rs.getBoolean("activo") ? "Activo" : "Inactivo",
+                    rs.getTimestamp("fecha_creacion"),
+                    rs.getInt("cantidad")
+                };
+                productos.add(fila);
+            }
+        } catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+
+        return productos;
     }
 
 }
