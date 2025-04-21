@@ -13,6 +13,8 @@ import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import modelo.Categoria;
 import modelo.Inventario;
@@ -34,7 +36,7 @@ public class VtnProductos extends javax.swing.JInternalFrame
         initComponents();
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
-        
+
         buscar.getDocument().addDocumentListener(new javax.swing.event.DocumentListener()
         {
             @Override
@@ -55,6 +57,8 @@ public class VtnProductos extends javax.swing.JInternalFrame
                 filtrarProductos();
             }
         });
+        
+        configurarCalculoDiferencia();
     }
 
     /**
@@ -169,6 +173,14 @@ public class VtnProductos extends javax.swing.JInternalFrame
 
         jLabel3.setText("Precio compra");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
+
+        precioCompraJT.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                precioCompraJTActionPerformed(evt);
+            }
+        });
         jPanel1.add(precioCompraJT, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 250, -1));
 
         jLabel4.setText("Stock Inicial");
@@ -260,21 +272,22 @@ public class VtnProductos extends javax.swing.JInternalFrame
         llenarComboCategoria(categoriaCB);
         llenarComboProvedor(provedorCB);
         llenarTablaProductos();
+        calcularPrecioVenta();
     }//GEN-LAST:event_formInternalFrameOpened
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
     {//GEN-HEADEREND:event_jButton1ActionPerformed
+
         String nombre = nombreJT.getText().trim();
         String descripcion = descripcionJT.getText().trim();
         String precioCompraStr = precioCompraJT.getText().trim();
-        String precioVentaStr = precioVentaJT.getText().trim();
         int stockMinimo = (Integer) stockMinS.getValue();
         int stockInicial = (Integer) stockInicialS.getValue();
         String categoriaSeleccionada = (String) categoriaCB.getSelectedItem();
         String proveedorSeleccionado = (String) provedorCB.getSelectedItem();
         boolean activo = activoCB.getSelectedItem().toString().equalsIgnoreCase("Activo");
 
-        if (nombre.isEmpty() || precioCompraStr.isEmpty() || precioVentaStr.isEmpty()
+        if (nombre.isEmpty() || precioCompraStr.isEmpty()
                 || categoriaSeleccionada == null || proveedorSeleccionado == null)
         {
             JOptionPane.showMessageDialog(this, "Todos los campos obligatorios deben estar llenos.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -286,7 +299,11 @@ public class VtnProductos extends javax.swing.JInternalFrame
         try
         {
             precioCompra = Double.parseDouble(precioCompraStr);
-            precioVenta = Double.parseDouble(precioVentaStr);
+
+            precioVenta = (precioCompra * 0.10) + precioCompra;
+           
+            precioVentaJT.setText(String.format("%.2f", precioVenta));
+
         } catch (NumberFormatException e)
         {
             JOptionPane.showMessageDialog(this, "Precios inválidos. Use solo números con punto decimal.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -309,7 +326,7 @@ public class VtnProductos extends javax.swing.JInternalFrame
         nuevoProducto.setNombre(nombre);
         nuevoProducto.setDescripcion(descripcion);
         nuevoProducto.setPrecio_compra(precioCompra);
-        nuevoProducto.setPrecio_venta(precioVenta);
+        nuevoProducto.setPrecio_venta(precioVenta); 
         nuevoProducto.setStock_minimo(stockMinimo);
         nuevoProducto.setCategoria_id(categoriaId);
         nuevoProducto.setProveedor_id(proveedorId);
@@ -342,6 +359,8 @@ public class VtnProductos extends javax.swing.JInternalFrame
         {
             JOptionPane.showMessageDialog(this, "Ocurrió un error al registrar el producto.", "Error", JOptionPane.ERROR_MESSAGE);
         }
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton2ActionPerformed
@@ -519,6 +538,56 @@ public class VtnProductos extends javax.swing.JInternalFrame
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void precioCompraJTActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_precioCompraJTActionPerformed
+    {//GEN-HEADEREND:event_precioCompraJTActionPerformed
+        configurarCalculoDiferencia();
+    }//GEN-LAST:event_precioCompraJTActionPerformed
+
+    private void calcularPrecioVenta()
+    {
+        try
+        {
+            String precioCompra = precioCompraJT.getText().trim();
+
+            if (precioCompra.isEmpty())
+            {
+                precioVentaJT.setText("");
+                return;
+            }
+
+            double precioVenta = (Double.parseDouble(precioCompra) * 0.10) + Double.parseDouble(precioCompra);
+
+            precioVentaJT.setText(String.format("%.2f", precioVenta));
+        } catch (NumberFormatException e)
+        {
+            precioVentaJT.setText("Error");
+        }
+    }
+
+    private void configurarCalculoDiferencia()
+    {
+        precioCompraJT.getDocument().addDocumentListener(new DocumentListener()
+        {
+            @Override
+            public void insertUpdate(DocumentEvent e)
+            {
+                calcularPrecioVenta();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e)
+            {
+                calcularPrecioVenta();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e)
+            {
+                calcularPrecioVenta();
+            }
+        });
+    }
+
     private void llenarTablaProductos()
     {
         DefaultTableModel modelo = (DefaultTableModel) tablaProductos.getModel();
@@ -538,10 +607,10 @@ public class VtnProductos extends javax.swing.JInternalFrame
         String textoBusqueda = buscar.getText().trim().toLowerCase();
         DefaultTableModel modeloTabla = (DefaultTableModel) tablaProductos.getModel();
 
-        modeloTabla.setRowCount(0); 
+        modeloTabla.setRowCount(0);
 
         ProductoDAO productoDAO = new ProductoDAO();
-        List<Object[]> productos = productoDAO.listarProductosConNombresYStock(); 
+        List<Object[]> productos = productoDAO.listarProductosConNombresYStock();
 
         for (Object[] fila : productos)
         {
