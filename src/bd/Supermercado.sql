@@ -16,9 +16,11 @@ CREATE TABLE categoria(
     activo BOOLEAN DEFAULT TRUE,
     fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+ 
+RENAME TABLE proveedore TO provedor;
 
 -- Tabla de Proveedores
-CREATE TABLE proveedore(
+CREATE TABLE provedor(
     proveedor_id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
     contacto VARCHAR(100),
