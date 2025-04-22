@@ -57,10 +57,11 @@
             <Component class="javax.swing.JTable" name="tablaCategoria">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="5" rowCount="0">
+                  <Table columnCount="6" rowCount="0">
                     <Column editable="false" title="ID CATEGORIA" type="java.lang.Object"/>
                     <Column editable="false" title="NOMBRE" type="java.lang.Object"/>
                     <Column editable="false" title="DESCRIPCCION" type="java.lang.Object"/>
+                    <Column editable="false" title="PORCENTAJE" type="java.lang.Object"/>
                     <Column editable="false" title="ACTIVO" type="java.lang.Object"/>
                     <Column editable="false" title="FECHA CREACION" type="java.lang.Object"/>
                   </Table>
@@ -156,7 +157,7 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="800" y="260" width="-1" height="-1"/>
+              <AbsoluteConstraints x="800" y="340" width="-1" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -179,7 +180,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="800" y="240" width="-1" height="-1"/>
+              <AbsoluteConstraints x="800" y="320" width="-1" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -213,6 +214,23 @@
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="690" y="50" width="30" height="20"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel6">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Porcentaje"/>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="800" y="230" width="-1" height="-1"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="javax.swing.JTextField" name="porcentajeJT">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="800" y="250" width="370" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>

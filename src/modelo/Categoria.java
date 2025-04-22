@@ -8,6 +8,7 @@ public class Categoria
     private int id_categoria;
     private String nombre;
     private String descripccion;
+    private int porcentaje;
     private boolean activo;
     private Date fecha_creacion;
 
@@ -15,18 +16,20 @@ public class Categoria
     {
     }
 
-    public Categoria(String nombre, String descripccion, boolean activo)
+    public Categoria(String nombre, String descripccion, int porcentaje, boolean activo)
     {
         this.nombre = nombre;
         this.descripccion = descripccion;
+        this.porcentaje = porcentaje;
         this.activo = activo;
     }
 
-    public Categoria(int id_categoria, String nombre, String descripccion, boolean activo, Date fecha_creacion)
+    public Categoria(int id_categoria, String nombre, String descripccion, int porcentaje, boolean activo, Date fecha_creacion)
     {
         this.id_categoria = id_categoria;
         this.nombre = nombre;
         this.descripccion = descripccion;
+        this.porcentaje = porcentaje;
         this.activo = activo;
         this.fecha_creacion = fecha_creacion;
     }
@@ -109,5 +112,21 @@ public class Categoria
     public void setFecha_creacion(Date fecha_creacion)
     {
         this.fecha_creacion = fecha_creacion;
+    }
+
+    /**
+     * @return the porcentaje
+     */
+    public int getPorcentaje()
+    {
+        return porcentaje;
+    }
+
+    /**
+     * @param porcentaje the porcentaje to set
+     */
+    public void setPorcentaje(int porcentaje)
+    {
+        this.porcentaje = porcentaje;
     }
 }

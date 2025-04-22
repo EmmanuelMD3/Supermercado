@@ -4,12 +4,9 @@ import conexion.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import modelo.Categoria;
-import java.util.Date;
 import java.sql.SQLException;
 import modelo.Categoria;
 
@@ -22,13 +19,14 @@ public class CategoriaDAO
 
     public static boolean agregarCategoria(Categoria categoria)
     {
-        String sql = "INSERT INTO Categoria (categoria_id, nombre, descripcion, activo) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO Categoria (categoria_id, nombre, descripcion, porcentaje, activo) VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = Conexion.conectar(); PreparedStatement pstmt = conn.prepareStatement(sql))
         {
             pstmt.setInt(1, categoria.getId_categoria());
             pstmt.setString(2, categoria.getNombre());
             pstmt.setString(3, categoria.getDescripccion());
-            pstmt.setBoolean(4, categoria.isActivo());
+            pstmt.setInt(4, categoria.getPorcentaje());
+            pstmt.setBoolean(5, categoria.isActivo());
 
             pstmt.executeUpdate();
             return true;
@@ -53,6 +51,7 @@ public class CategoriaDAO
                         rs.getInt("categoria_id"),
                         rs.getString("nombre"),
                         rs.getString("descripcion"),
+                        rs.getInt("porcentaje"),
                         rs.getBoolean("activo"),
                         rs.getDate("fecha_creacion")
                 );
@@ -91,7 +90,7 @@ public class CategoriaDAO
     public List<Categoria> obtenerTodosLasCategorias()
     {
         List<Categoria> categorias = new ArrayList<>();
-        String sql = "SELECT categoria_id, nombre, descripcion, activo, fecha_creacion FROM categoria";
+        String sql = "SELECT categoria_id, nombre, descripcion, porcentaje, activo, fecha_creacion FROM categoria";
 
         try (Connection conn = Conexion.conectar(); PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet rs = pstmt.executeQuery())
         {
@@ -102,6 +101,7 @@ public class CategoriaDAO
                 categoria.setId_categoria(rs.getInt("categoria_id"));
                 categoria.setNombre(rs.getString("nombre"));
                 categoria.setDescripccion(rs.getString("descripcion"));
+                categoria.setPorcentaje(rs.getInt("porcentaje"));
                 categoria.setActivo(rs.getBoolean("activo"));
                 categoria.setFecha_creacion(rs.getDate("fecha_creacion"));
 
@@ -116,14 +116,15 @@ public class CategoriaDAO
 
     public boolean modificarCategoria(Categoria categoria)
     {
-        String sql = "UPDATE categoria SET nombre = ?, descripcion = ?, activo = ? WHERE categoria_id = ?";
+        String sql = "UPDATE categoria SET nombre = ?, descripcion = ?, porcentaje = ?, activo = ? WHERE categoria_id = ?";
 
         try (Connection conn = Conexion.conectar(); PreparedStatement pstmt = conn.prepareStatement(sql))
         {
             pstmt.setString(1, categoria.getNombre());
             pstmt.setString(2, categoria.getDescripccion());
-            pstmt.setBoolean(3, categoria.isActivo());
-            pstmt.setLong(4, categoria.getId_categoria());
+            pstmt.setInt(3, categoria.getPorcentaje());
+            pstmt.setBoolean(4, categoria.isActivo());
+            pstmt.setLong(5, categoria.getId_categoria());
 
             int affectedRows = pstmt.executeUpdate();
             return affectedRows > 0;
@@ -150,6 +151,30 @@ public class CategoriaDAO
             System.err.println("Error al obtener el ID: " + e.getMessage());
         }
         return -1;
+    }
+
+    public int obtenerPorcentajePorNombre(String nombreCategoria)
+    {
+        int porcentaje = -1;
+        String sql = "SELECT porcentaje FROM categoria WHERE nombre = ?";
+
+        try (Connection conn = Conexion.conectar(); PreparedStatement pstmt = conn.prepareStatement(sql))
+        {
+
+            pstmt.setString(1, nombreCategoria);
+            try (ResultSet rs = pstmt.executeQuery())
+            {
+                if (rs.next())
+                {
+                    porcentaje = rs.getInt("porcentaje");
+                }
+            }
+        } catch (SQLException e)
+        {
+            System.err.println("Error al obtener el porcentaje por nombre: " + e.getMessage());
+        }
+
+        return porcentaje;
     }
 
 }

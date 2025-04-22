@@ -57,7 +57,7 @@ public class VtnProductos extends javax.swing.JInternalFrame
                 filtrarProductos();
             }
         });
-        
+
         configurarCalculoDiferencia();
     }
 
@@ -301,7 +301,7 @@ public class VtnProductos extends javax.swing.JInternalFrame
             precioCompra = Double.parseDouble(precioCompraStr);
 
             precioVenta = (precioCompra * 0.10) + precioCompra;
-           
+
             precioVentaJT.setText(String.format("%.2f", precioVenta));
 
         } catch (NumberFormatException e)
@@ -326,7 +326,7 @@ public class VtnProductos extends javax.swing.JInternalFrame
         nuevoProducto.setNombre(nombre);
         nuevoProducto.setDescripcion(descripcion);
         nuevoProducto.setPrecio_compra(precioCompra);
-        nuevoProducto.setPrecio_venta(precioVenta); 
+        nuevoProducto.setPrecio_venta(precioVenta);
         nuevoProducto.setStock_minimo(stockMinimo);
         nuevoProducto.setCategoria_id(categoriaId);
         nuevoProducto.setProveedor_id(proveedorId);

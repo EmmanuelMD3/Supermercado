@@ -74,6 +74,8 @@ public class VtnCategorias extends javax.swing.JInternalFrame
         jButton3 = new javax.swing.JButton();
         buscar = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        porcentajeJT = new javax.swing.JTextField();
 
         setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         addInternalFrameListener(new javax.swing.event.InternalFrameListener()
@@ -112,13 +114,13 @@ public class VtnCategorias extends javax.swing.JInternalFrame
             },
             new String []
             {
-                "ID CATEGORIA", "NOMBRE", "DESCRIPCCION", "ACTIVO", "FECHA CREACION"
+                "ID CATEGORIA", "NOMBRE", "DESCRIPCCION", "PORCENTAJE", "ACTIVO", "FECHA CREACION"
             }
         )
         {
             boolean[] canEdit = new boolean []
             {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex)
@@ -164,7 +166,7 @@ public class VtnCategorias extends javax.swing.JInternalFrame
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 10, 100, 20));
 
         activoCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
-        jPanel1.add(activoCB, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 260, -1, -1));
+        jPanel1.add(activoCB, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 340, -1, -1));
 
         jButton2.setText("Modificar");
         jButton2.addActionListener(new java.awt.event.ActionListener()
@@ -177,7 +179,7 @@ public class VtnCategorias extends javax.swing.JInternalFrame
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 470, -1, -1));
 
         jLabel4.setText("Activo");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 240, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 320, -1, -1));
 
         jButton3.setText("Limpiar");
         jButton3.addActionListener(new java.awt.event.ActionListener()
@@ -200,6 +202,10 @@ public class VtnCategorias extends javax.swing.JInternalFrame
         });
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 50, 30, 20));
 
+        jLabel6.setText("Porcentaje");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 230, -1, -1));
+        jPanel1.add(porcentajeJT, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 250, 370, -1));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 540));
 
         pack();
@@ -209,6 +215,8 @@ public class VtnCategorias extends javax.swing.JInternalFrame
     {//GEN-HEADEREND:event_jButton1ActionPerformed
         String nombre = categoriaJT.getText().trim();
         String descripcion = descripccionJT.getText().trim();
+        String porncetajeTexto = porcentajeJT.getText().trim();
+        int porcentaje = Integer.parseInt(porcentajeJT.getText().trim());
         String estado = (String) activoCB.getSelectedItem();
 
         if (nombre.isEmpty())
@@ -223,16 +231,22 @@ public class VtnCategorias extends javax.swing.JInternalFrame
             return;
         }
 
+        if (porncetajeTexto.isEmpty())
+        {
+            JOptionPane.showMessageDialog(this, "Elporcentaje no puede estar vacio.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         boolean activo = estado.equalsIgnoreCase("Activo");
 
-        Categoria nuevaCategoria = new Categoria(nombre, descripcion, activo);
+        Categoria nuevaCategoria = new Categoria(nombre, descripcion, porcentaje, activo);
 
         boolean exito = CategoriaDAO.agregarCategoria(nuevaCategoria);
 
         if (exito)
         {
             JOptionPane.showMessageDialog(this, "Categoría registrada exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-            CtrlInterfaz.limpia(categoriaJT, descripcion);
+            CtrlInterfaz.limpia(categoriaJT, descripccionJT, porcentajeJT);
             activoCB.setSelectedIndex(0);
             llenarTablaCategorias();
         } else
@@ -253,12 +267,15 @@ public class VtnCategorias extends javax.swing.JInternalFrame
         if (filaSeleccionada != -1)
         {
             DefaultTableModel modeloTabla = (DefaultTableModel) tablaCategoria.getModel();
-            String nombreCategoria = (String) modeloTabla.getValueAt(filaSeleccionada, 1);
-            String descripcion = (String) modeloTabla.getValueAt(filaSeleccionada, 2);
-            String estado = (String) modeloTabla.getValueAt(filaSeleccionada, 3);
+            String nombreCategoria = modeloTabla.getValueAt(filaSeleccionada, 1).toString();
+            String descripcion = modeloTabla.getValueAt(filaSeleccionada, 2).toString();
+            String porcentaje = modeloTabla.getValueAt(filaSeleccionada, 3).toString();
+            String estado = modeloTabla.getValueAt(filaSeleccionada, 4).toString();
+            
 
             categoriaJT.setText(nombreCategoria);
             descripccionJT.setText(descripcion);
+            porcentajeJT.setText(porcentaje);
 
             if (estado.equals("Activo"))
             {
@@ -308,7 +325,7 @@ public class VtnCategorias extends javax.swing.JInternalFrame
 
             llenarTablaCategorias();
             JOptionPane.showMessageDialog(this, "Categoría eliminada correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-            CtrlInterfaz.limpia(categoriaJT, descripccionJT);
+            CtrlInterfaz.limpia(categoriaJT, descripccionJT, porcentajeJT);
             activoCB.setSelectedIndex(0);
 
         }
@@ -316,7 +333,7 @@ public class VtnCategorias extends javax.swing.JInternalFrame
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton3ActionPerformed
     {//GEN-HEADEREND:event_jButton3ActionPerformed
-        CtrlInterfaz.limpia(categoriaJT, descripccionJT);
+        CtrlInterfaz.limpia(categoriaJT, descripccionJT, porcentajeJT);
         activoCB.setSelectedIndex(0);
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -335,6 +352,7 @@ public class VtnCategorias extends javax.swing.JInternalFrame
         String nuevoNombre = categoriaJT.getText();
         String nuevaDescripcion = descripccionJT.getText();
         String estadoSeleccionado = activoCB.getSelectedItem().toString();
+        String nuevoPorcentaje = porcentajeJT.getText();
 
         boolean activo = estadoSeleccionado.equalsIgnoreCase("Activo");
 
@@ -356,6 +374,7 @@ public class VtnCategorias extends javax.swing.JInternalFrame
         categoriaActualizada.setId_categoria(categoriaId);
         categoriaActualizada.setNombre(nuevoNombre);
         categoriaActualizada.setDescripccion(nuevaDescripcion);
+        categoriaActualizada.setPorcentaje(Integer.parseInt(nuevoPorcentaje));
         categoriaActualizada.setActivo(activo);
 
         boolean exito = categoriaDAO.modificarCategoria(categoriaActualizada);
@@ -385,6 +404,7 @@ public class VtnCategorias extends javax.swing.JInternalFrame
                 categoria.getId_categoria(),
                 categoria.getNombre(),
                 categoria.getDescripccion(),
+                categoria.getPorcentaje(),
                 categoria.isActivo() ? "Activo" : "Inactivo",
                 categoria.getFecha_creacion()
             });
@@ -411,6 +431,7 @@ public class VtnCategorias extends javax.swing.JInternalFrame
                     categoria.getId_categoria(),
                     categoria.getNombre(),
                     categoria.getDescripccion(),
+                    categoria.getPorcentaje(),
                     categoria.isActivo() ? "Activo" : "Inactivo",
                     categoria.getFecha_creacion()
                 };
@@ -433,9 +454,11 @@ public class VtnCategorias extends javax.swing.JInternalFrame
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField porcentajeJT;
     private javax.swing.JTable tablaCategoria;
     // End of variables declaration//GEN-END:variables
 }
