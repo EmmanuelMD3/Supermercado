@@ -90,7 +90,7 @@ public class VtnProductos extends javax.swing.JInternalFrame
         activoCB = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         provedorCB = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        alta = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         buscar = new javax.swing.JTextField();
@@ -185,6 +185,8 @@ public class VtnProductos extends javax.swing.JInternalFrame
 
         jLabel4.setText("Stock Inicial");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 60, -1, -1));
+
+        precioVentaJT.setEditable(false);
         jPanel1.add(precioVentaJT, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, 240, -1));
 
         stockMinS.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
@@ -212,15 +214,15 @@ public class VtnProductos extends javax.swing.JInternalFrame
         provedorCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(provedorCB, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 130, 240, -1));
 
-        jButton1.setText("aceptar");
-        jButton1.addActionListener(new java.awt.event.ActionListener()
+        alta.setText("aceptar");
+        alta.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                jButton1ActionPerformed(evt);
+                altaActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 180, -1, -1));
+        jPanel1.add(alta, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 180, -1, -1));
 
         jButton2.setText("modificar");
         jButton2.addActionListener(new java.awt.event.ActionListener()
@@ -275,8 +277,8 @@ public class VtnProductos extends javax.swing.JInternalFrame
         calcularPrecioVenta();
     }//GEN-LAST:event_formInternalFrameOpened
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
-    {//GEN-HEADEREND:event_jButton1ActionPerformed
+    private void altaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_altaActionPerformed
+    {//GEN-HEADEREND:event_altaActionPerformed
 
         String nombre = nombreJT.getText().trim();
         String descripcion = descripcionJT.getText().trim();
@@ -294,23 +296,17 @@ public class VtnProductos extends javax.swing.JInternalFrame
             return;
         }
 
-        double precioCompra;
+        double precioCompra = Double.parseDouble(precioCompraStr);
         double precioVenta;
-        try
-        {
-            precioCompra = Double.parseDouble(precioCompraStr);
-
-            precioVenta = (precioCompra * 0.10) + precioCompra;
-
-            precioVentaJT.setText(String.format("%.2f", precioVenta));
-
-        } catch (NumberFormatException e)
-        {
-            JOptionPane.showMessageDialog(this, "Precios inválidos. Use solo números con punto decimal.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
+        
         CategoriaDAO categoriaDAO = new CategoriaDAO();
+        
+        String nombrePorcentaje = categoriaCB.getSelectedItem().toString();
+        
+        int porcentaje = categoriaDAO.obtenerPorcentajePorNombre(nombrePorcentaje);
+        
+        precioVenta = ((precioCompra * porcentaje)/100) + precioCompra;
+
         ProvedorDAO provedorDAO = new ProvedorDAO();
 
         int categoriaId = categoriaDAO.obtenerIdPorNombre(categoriaSeleccionada);
@@ -361,7 +357,7 @@ public class VtnProductos extends javax.swing.JInternalFrame
         }
 
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_altaActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton2ActionPerformed
     {//GEN-HEADEREND:event_jButton2ActionPerformed
@@ -547,20 +543,29 @@ public class VtnProductos extends javax.swing.JInternalFrame
     {
         try
         {
-            String precioCompra = precioCompraJT.getText().trim();
-
+            CategoriaDAO categoriaDAO = new CategoriaDAO();
+            String nombrePorcentaje = categoriaCB.getSelectedItem().toString();
+            
+            String precioCompra = precioCompraJT.getText();
+            
+            double precioCompraNumero = Double.parseDouble(precioCompra);
+            
+            int porcentaje = categoriaDAO.obtenerPorcentajePorNombre(nombrePorcentaje);
+            
             if (precioCompra.isEmpty())
             {
                 precioVentaJT.setText("");
                 return;
             }
 
-            double precioVenta = (Double.parseDouble(precioCompra) * 0.10) + Double.parseDouble(precioCompra);
+           // double precioVenta = (Double.parseDouble(precioCompra) * 0.10) + Double.parseDouble(precioCompra);
+           
+            double precioVenta = ((precioCompraNumero*porcentaje)/100)+precioCompraNumero;
 
             precioVentaJT.setText(String.format("%.2f", precioVenta));
         } catch (NumberFormatException e)
         {
-            precioVentaJT.setText("Error");
+            precioVentaJT.setText("Seleccione una categoria");
         }
     }
 
@@ -656,10 +661,10 @@ public class VtnProductos extends javax.swing.JInternalFrame
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> activoCB;
+    private javax.swing.JButton alta;
     private javax.swing.JTextField buscar;
     private javax.swing.JComboBox<String> categoriaCB;
     private javax.swing.JTextField descripcionJT;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
