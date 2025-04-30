@@ -88,6 +88,13 @@ public class VtnPrincipal extends javax.swing.JFrame
         jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/empleado-de-oficina.png"))); // NOI18N
         jMenu5.setText("Empleados");
         jMenu5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jMenu5.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jMenu5MouseClicked(evt);
+            }
+        });
         jMenu1.add(jMenu5);
 
         jMenu7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/limpieza.png"))); // NOI18N
@@ -149,6 +156,14 @@ public class VtnPrincipal extends javax.swing.JFrame
         VtnProductos productos = new VtnProductos();
         panelControl.add(productos).setVisible(true);
     }//GEN-LAST:event_jMenu7MouseClicked
+
+    private void jMenu5MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jMenu5MouseClicked
+    {//GEN-HEADEREND:event_jMenu5MouseClicked
+        panelControl.removeAll();
+        VtnEmpleado empleado = new VtnEmpleado();
+        panelControl.add(empleado).setVisible(true);
+                
+    }//GEN-LAST:event_jMenu5MouseClicked
 
     /**
      * @param args the command line arguments

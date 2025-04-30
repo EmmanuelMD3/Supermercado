@@ -279,7 +279,6 @@ public class VtnProductos extends javax.swing.JInternalFrame
 
     private void altaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_altaActionPerformed
     {//GEN-HEADEREND:event_altaActionPerformed
-
         String nombre = nombreJT.getText().trim();
         String descripcion = descripcionJT.getText().trim();
         String precioCompraStr = precioCompraJT.getText().trim();
@@ -355,8 +354,6 @@ public class VtnProductos extends javax.swing.JInternalFrame
         {
             JOptionPane.showMessageDialog(this, "Ocurrió un error al registrar el producto.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-
-
     }//GEN-LAST:event_altaActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton2ActionPerformed
@@ -558,8 +555,6 @@ public class VtnProductos extends javax.swing.JInternalFrame
                 return;
             }
 
-           // double precioVenta = (Double.parseDouble(precioCompra) * 0.10) + Double.parseDouble(precioCompra);
-           
             double precioVenta = ((precioCompraNumero*porcentaje)/100)+precioCompraNumero;
 
             precioVentaJT.setText(String.format("%.2f", precioVenta));

@@ -394,7 +394,7 @@ public class VtnProvedores extends javax.swing.JInternalFrame
         if (exito)
         {
             JOptionPane.showMessageDialog(this, "Proveedor actualizado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-            llenarTablaProveedores(); 
+            llenarTablaProveedores();
         } else
         {
             JOptionPane.showMessageDialog(this, "Error al actualizar el proveedor.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -452,7 +452,10 @@ public class VtnProvedores extends javax.swing.JInternalFrame
             }
         }
     }
+    
+    
 
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> activoCB;
