@@ -10,7 +10,7 @@ import java.util.Date;
  *
  * @author chemo
  */
-public class Producto
+public class Producto 
 {
     private int producto_id;
     private String nombre;
@@ -52,6 +52,15 @@ public class Producto
         this.proveedor_id = proveedor_id;
         this.activo = activo;
     }
+
+    public Producto(int producto_id, String nombre, double precio_venta)
+    {
+        this.producto_id = producto_id;
+        this.nombre = nombre;
+        this.precio_venta = precio_venta;
+    }
+    
+    
 
     /**
      * @return the producto_id

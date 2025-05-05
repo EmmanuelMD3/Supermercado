@@ -27,7 +27,7 @@ public class InventarioDAO
 
         try (Connection conn = Conexion.conectar(); PreparedStatement pstmt = conn.prepareStatement(sql))
         {
-            pstmt.setInt(1, inventario.getProducto_id());
+            pstmt.setInt(1, inventario.getProducto_id_fk());
             pstmt.setInt(2, inventario.getCantidad());
 
             int filas = pstmt.executeUpdate();

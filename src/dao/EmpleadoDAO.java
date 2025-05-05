@@ -154,4 +154,32 @@ public class EmpleadoDAO
         return empleados;
     }
 
+    public Empleado obtenerRolEId(String usuario, String password)
+    {
+        String sql = "SELECT empleado_id, rol_id, nombre FROM empleado WHERE usuario = ? AND password = ? AND activo = 1";
+
+        try (Connection conn = Conexion.conectar(); PreparedStatement pstmt = conn.prepareStatement(sql))
+        {
+            pstmt.setString(1, usuario);
+            pstmt.setString(2, password);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next())
+            {
+                Empleado emp = new Empleado();
+                emp.setEmpleado_id(rs.getInt("empleado_id"));
+                emp.setRol_id(rs.getInt("rol_id"));
+                emp.setNombre(rs.getString("nombre"));
+
+                return emp;
+            }
+        } catch (SQLException e)
+        {
+            System.err.println("Error al validar credenciales: " + e.getMessage());
+        }
+
+        return null; 
+    }
+
 }

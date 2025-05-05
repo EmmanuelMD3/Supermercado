@@ -10,10 +10,10 @@ import java.util.Date;
  *
  * @author chemo
  */
-public class Inventario
+public class Inventario extends Producto
 {
     private int inventario_id;
-    private int producto_id;
+    private int producto_id_fk;
     private int cantidad;
     private Date fecha_actualizacion;
 
@@ -23,17 +23,24 @@ public class Inventario
 
     public Inventario(int producto_id, int cantidad)
     {
-        this.producto_id = producto_id;
+        this.producto_id_fk = producto_id;
         this.cantidad = cantidad;
     }
 
     public Inventario(int inventario_id, int producto_id, int cantidad, Date fecha_actualizacion)
     {
         this.inventario_id = inventario_id;
-        this.producto_id = producto_id;
+        this.producto_id_fk = producto_id;
         this.cantidad = cantidad;
         this.fecha_actualizacion = fecha_actualizacion;
     }
+
+    public Inventario(int cantidad, int producto_id, String nombre, double precio_venta)
+    {
+        super(producto_id, nombre, precio_venta);
+        this.cantidad = cantidad;
+    }
+    
 
     /**
      * @return the inventario_id
@@ -54,17 +61,17 @@ public class Inventario
     /**
      * @return the producto_id
      */
-    public int getProducto_id()
+    public int getProducto_id_fk()
     {
-        return producto_id;
+        return producto_id_fk;
     }
 
     /**
      * @param producto_id the producto_id to set
      */
-    public void setProducto_id(int producto_id)
+    public void setProducto_id_fk(int producto_id)
     {
-        this.producto_id = producto_id;
+        this.producto_id_fk = producto_id;
     }
 
     /**

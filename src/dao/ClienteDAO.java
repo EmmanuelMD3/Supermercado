@@ -148,4 +148,39 @@ public class ClienteDAO
         return clientes;
     }
 
+//    public int obtenerIdPorNombre(String nombre)
+//    {
+//        String sql = "SELECT cliente_id FROM cliente WHERE nombre = ?";
+//        try (Connection conn = Conexion.conectar(); PreparedStatement pstmt = conn.prepareStatement(sql))
+//        {
+//            pstmt.setString(1, nombre);
+//            ResultSet rs = pstmt.executeQuery();
+//            if (rs.next())
+//            {
+//                return rs.getInt("cliente_id");
+//            }
+//        } catch (SQLException e)
+//        {
+//            System.err.println("Error al obtener el ID del cliente: " + e.getMessage());
+//        }
+//        return -1;
+//    }
+    public int obtenerIdPorNombreCompleto(String nombreCompleto)
+    {
+        String sql = "SELECT cliente_id FROM cliente WHERE CONCAT(nombre, ' ', apellido) = ?";
+        try (Connection conn = Conexion.conectar(); PreparedStatement pstmt = conn.prepareStatement(sql))
+        {
+            pstmt.setString(1, nombreCompleto);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next())
+            {
+                return rs.getInt("cliente_id");
+            }
+        } catch (SQLException e)
+        {
+            System.err.println("Error al obtener el ID del cliente: " + e.getMessage());
+        }
+        return -1; 
+    }
+
 }

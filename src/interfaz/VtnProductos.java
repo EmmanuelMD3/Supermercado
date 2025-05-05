@@ -415,9 +415,11 @@ public class VtnProductos extends javax.swing.JInternalFrame
                     JOptionPane.showMessageDialog(this, "Producto actualizado, pero ocurrió un error al actualizar el inventario.", "Advertencia", JOptionPane.WARNING_MESSAGE);
                 } else
                 {
-                    JOptionPane.showMessageDialog(this, "Producto e inventario actualizados correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Producto e inventario actualizados correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);                   
                 }
+                limpiarCampos();
                 llenarTablaProductos();
+                
             } else
             {
                 JOptionPane.showMessageDialog(this, "Error al actualizar el producto.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -522,7 +524,7 @@ public class VtnProductos extends javax.swing.JInternalFrame
             if (exito)
             {
                 JOptionPane.showMessageDialog(this, "Producto eliminado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-                llenarTablaProductos();
+                limpiarCampos();
                 llenarTablaProductos();
             } else
             {
@@ -535,7 +537,16 @@ public class VtnProductos extends javax.swing.JInternalFrame
     {//GEN-HEADEREND:event_precioCompraJTActionPerformed
         configurarCalculoDiferencia();
     }//GEN-LAST:event_precioCompraJTActionPerformed
-
+    public void limpiarCampos()
+    {
+        CtrlInterfaz.limpia(nombreJT, descripcionJT, precioCompraJT, precioVentaJT);
+        provedorCB.setSelectedIndex(0);
+        categoriaCB.setSelectedIndex(0);
+        activoCB.setSelectedIndex(0);
+        stockInicialS.setValue(1);
+        stockMinS.setValue(1);
+    }
+    
     private void calcularPrecioVenta()
     {
         try

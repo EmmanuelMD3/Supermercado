@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import modelo.Inventario;
 
 /**
  *
@@ -229,6 +230,78 @@ public class ProductoDAO
         }
 
         return productos;
+    }
+
+    public boolean existenProductosPorCategoria(long categoriaId)
+    {
+        String sql = "SELECT COUNT(*) FROM producto WHERE categoria_id = ?";
+
+        try (Connection conn = Conexion.conectar(); PreparedStatement pstmt = conn.prepareStatement(sql))
+        {
+            pstmt.setLong(1, categoriaId);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next())
+            {
+                int cantidad = rs.getInt(1);
+                return cantidad > 0;
+            }
+        } catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+    public List<Inventario> obtenerProductosPorCategoria(String nombreCategoria)
+    {
+        List<Inventario> lista = new ArrayList<>();
+        String sql = "SELECT p.producto_id, p.nombre, p.precio_venta, i.cantidad "
+                + "FROM producto p "
+                + "JOIN categoria c ON p.categoria_id = c.categoria_id "
+                + "JOIN inventario i ON p.producto_id = i.producto_id "
+                + "WHERE c.nombre = ?";
+
+        try (Connection conn = Conexion.conectar(); PreparedStatement pstmt = conn.prepareStatement(sql))
+        {
+            pstmt.setString(1, nombreCategoria);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next())
+            {
+                Inventario inv = new Inventario(
+                        rs.getInt("cantidad"),
+                        rs.getInt("producto_id"),
+                        rs.getString("nombre"),
+                        rs.getDouble("precio_venta")
+                );
+                lista.add(inv);
+            }
+        } catch (SQLException e)
+        {
+            System.err.println("Error al obtener productos por categoría: " + e.getMessage());
+        }
+
+        return lista;
+    }
+
+    public boolean reducirStock(int productoId, int cantidadVendida)
+    {
+        String sql = "UPDATE inventario SET cantidad = cantidad - ? WHERE producto_id = ?";
+
+        try (Connection conn = Conexion.conectar(); PreparedStatement pstmt = conn.prepareStatement(sql))
+        {
+            pstmt.setInt(1, cantidadVendida);
+            pstmt.setInt(2, productoId);
+
+            int filasAfectadas = pstmt.executeUpdate();
+            return filasAfectadas > 0;
+        } catch (SQLException e)
+        {
+            System.err.println("Error al actualizar stock: " + e.getMessage());
+        }
+        return false;
     }
 
 }

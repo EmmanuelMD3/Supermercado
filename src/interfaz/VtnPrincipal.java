@@ -4,6 +4,9 @@
  */
 package interfaz;
 
+import dao.DetalleVentaDAO;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author chemo
@@ -11,12 +14,20 @@ package interfaz;
 public class VtnPrincipal extends javax.swing.JFrame
 {
 
+    private int idEmpleado;
+    private int rolEmnpleado;
+    private String nombreEmpleado;
+
     /**
      * Creates new form VtnPrincipal
      */
     public VtnPrincipal()
     {
         initComponents();
+        menuAdmin.setEnabled(false);
+        menuCaja.setEnabled(false);
+        opcCerrarSecion.setEnabled(false);
+        menuDetalleVenta.setEnabled(false);
     }
 
     /**
@@ -31,12 +42,18 @@ public class VtnPrincipal extends javax.swing.JFrame
 
         panelControl = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        menuAdmin = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
         jMenu7 = new javax.swing.JMenu();
         jMenu6 = new javax.swing.JMenu();
+        menuDetalleVenta = new javax.swing.JMenu();
+        menuCaja = new javax.swing.JMenu();
+        jMenu9 = new javax.swing.JMenu();
+        jMenu10 = new javax.swing.JMenu();
+        opcCerrarSecion = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -56,9 +73,9 @@ public class VtnPrincipal extends javax.swing.JFrame
 
         jMenuBar1.setPreferredSize(new java.awt.Dimension(171, 30));
 
-        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Administrador.png"))); // NOI18N
-        jMenu1.setText("Administrador");
-        jMenu1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        menuAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Administrador.png"))); // NOI18N
+        menuAdmin.setText("Administrador");
+        menuAdmin.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
 
         jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/opciones.png"))); // NOI18N
         jMenu3.setText("Categorias");
@@ -71,7 +88,7 @@ public class VtnPrincipal extends javax.swing.JFrame
                 jMenu3MouseClicked(evt);
             }
         });
-        jMenu1.add(jMenu3);
+        menuAdmin.add(jMenu3);
 
         jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/servicio-al-cliente.png"))); // NOI18N
         jMenu4.setText("Clientes");
@@ -83,7 +100,7 @@ public class VtnPrincipal extends javax.swing.JFrame
                 jMenu4MouseClicked(evt);
             }
         });
-        jMenu1.add(jMenu4);
+        menuAdmin.add(jMenu4);
 
         jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/empleado-de-oficina.png"))); // NOI18N
         jMenu5.setText("Empleados");
@@ -95,7 +112,7 @@ public class VtnPrincipal extends javax.swing.JFrame
                 jMenu5MouseClicked(evt);
             }
         });
-        jMenu1.add(jMenu5);
+        menuAdmin.add(jMenu5);
 
         jMenu7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/limpieza.png"))); // NOI18N
         jMenu7.setText("Productos");
@@ -107,7 +124,7 @@ public class VtnPrincipal extends javax.swing.JFrame
                 jMenu7MouseClicked(evt);
             }
         });
-        jMenu1.add(jMenu7);
+        menuAdmin.add(jMenu7);
 
         jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/gestion.png"))); // NOI18N
         jMenu6.setText("Provedores");
@@ -119,9 +136,61 @@ public class VtnPrincipal extends javax.swing.JFrame
                 jMenu6MouseClicked(evt);
             }
         });
-        jMenu1.add(jMenu6);
+        menuAdmin.add(jMenu6);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(menuAdmin);
+
+        menuDetalleVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/vendedor.png"))); // NOI18N
+        menuDetalleVenta.setText("Detalles Ventas");
+        menuDetalleVenta.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jMenuBar1.add(menuDetalleVenta);
+
+        menuCaja.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cajero.png"))); // NOI18N
+        menuCaja.setText("Caja");
+        menuCaja.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        menuCaja.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                menuCajaMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(menuCaja);
+
+        jMenu9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iniciar-sesion.png"))); // NOI18N
+        jMenu9.setText("Login");
+        jMenu9.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+
+        jMenu10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/datos-del-usuario.png"))); // NOI18N
+        jMenu10.setText("Iniciar Sesion");
+        jMenu10.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jMenu10.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jMenu10MouseClicked(evt);
+            }
+        });
+        jMenu9.add(jMenu10);
+
+        opcCerrarSecion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cerrar-con-llave.png"))); // NOI18N
+        opcCerrarSecion.setText("Cerrar Sesion");
+        opcCerrarSecion.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        opcCerrarSecion.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                opcCerrarSecionMouseClicked(evt);
+            }
+        });
+        jMenu9.add(opcCerrarSecion);
+
+        jMenuBar1.add(jMenu9);
+
+        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/empleado.png"))); // NOI18N
+        jMenu2.setText("Empleado");
+        jMenu2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
 
@@ -162,8 +231,99 @@ public class VtnPrincipal extends javax.swing.JFrame
         panelControl.removeAll();
         VtnEmpleado empleado = new VtnEmpleado();
         panelControl.add(empleado).setVisible(true);
-                
     }//GEN-LAST:event_jMenu5MouseClicked
+
+    private void menuCajaMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_menuCajaMouseClicked
+    {//GEN-HEADEREND:event_menuCajaMouseClicked
+        boolean activo = menuCaja.isEnabled();
+
+        if (activo)
+        {
+            panelControl.removeAll();
+            VtnVenta venta = new VtnVenta(idEmpleado);
+            panelControl.add(venta).setVisible(true);
+        } else
+        {
+            JOptionPane.showMessageDialog(this, "Inicie sesion.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_menuCajaMouseClicked
+
+    private void jMenu10MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jMenu10MouseClicked
+    {//GEN-HEADEREND:event_jMenu10MouseClicked
+        VtnLogin login = new VtnLogin(this, true, this);
+        login.setVisible(true);
+
+        if (login.isAcceso())
+        {
+            switch (rolEmnpleado)
+            {
+                case 0:
+                    JOptionPane.showMessageDialog(this, "Bienvenido administrador");
+                    menuAdmin.setEnabled(true);
+                    menuCaja.setEnabled(true);
+                    opcCerrarSecion.setEnabled(true);
+                    menuDetalleVenta.setEnabled(true);
+                    break;
+
+                case 1:
+                    JOptionPane.showMessageDialog(this, "Bienvenido cajero");
+                    menuCaja.setEnabled(true);
+                    opcCerrarSecion.setEnabled(true);
+                    break;
+
+                case 2:
+                    JOptionPane.showMessageDialog(this, "Bienvenido área de almacén");
+                    break;
+
+                default:
+                    JOptionPane.showMessageDialog(this, "Rol desconocido o no autorizado", "Error", JOptionPane.ERROR_MESSAGE);
+                    break;
+            }
+        }
+    }//GEN-LAST:event_jMenu10MouseClicked
+
+    private void opcCerrarSecionMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_opcCerrarSecionMouseClicked
+    {//GEN-HEADEREND:event_opcCerrarSecionMouseClicked
+        boolean acceso = opcCerrarSecion.isEnabled();
+
+        if (acceso)
+        {
+            cerrarSesion();
+        } else
+        {
+            JOptionPane.showMessageDialog(this, "Inicie Sesion", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_opcCerrarSecionMouseClicked
+
+    public void setDatosEmpleado(int idEmpleado, int rol, String nombre)
+    {
+        this.idEmpleado = idEmpleado;
+        this.rolEmnpleado = rol;
+        this.nombreEmpleado = nombre;
+
+        jMenu2.setText(nombreEmpleado);
+
+        System.out.println("Empleado logueado: ID=" + idEmpleado + " Rol=" + rol);
+    }
+
+    public void cerrarSesion()
+    {
+
+        idEmpleado = -1;
+        rolEmnpleado = -1;
+        nombreEmpleado = "";
+
+        jMenu2.setText("Usuario");
+        menuAdmin.setEnabled(false);
+        menuCaja.setEnabled(false);
+        opcCerrarSecion.setEnabled(false);
+
+        panelControl.removeAll();
+        panelControl.repaint();
+        panelControl.revalidate();
+
+        JOptionPane.showMessageDialog(this, "Sesión cerrada.");
+    }
 
     /**
      * @param args the command line arguments
@@ -211,13 +371,19 @@ public class VtnPrincipal extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu10;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
+    private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu menuAdmin;
+    private javax.swing.JMenu menuCaja;
+    private javax.swing.JMenu menuDetalleVenta;
+    private javax.swing.JMenu opcCerrarSecion;
     private javax.swing.JDesktopPane panelControl;
     // End of variables declaration//GEN-END:variables
 }

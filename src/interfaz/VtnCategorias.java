@@ -8,6 +8,7 @@ import cjb.ci.CtrlInterfaz;
 import javax.swing.JOptionPane;
 import modelo.Categoria;
 import dao.CategoriaDAO;
+import dao.ProductoDAO;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -26,26 +27,7 @@ public class VtnCategorias extends javax.swing.JInternalFrame
         initComponents();
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
-        buscar.getDocument().addDocumentListener(new javax.swing.event.DocumentListener()
-        {
-            @Override
-            public void insertUpdate(javax.swing.event.DocumentEvent e)
-            {
-                filtrarCategorias();
-            }
-
-            @Override
-            public void removeUpdate(javax.swing.event.DocumentEvent e)
-            {
-                filtrarCategorias();
-            }
-
-            @Override
-            public void changedUpdate(javax.swing.event.DocumentEvent e)
-            {
-                filtrarCategorias();
-            }
-        });
+        filtro();
     }
 
     /**
@@ -73,9 +55,9 @@ public class VtnCategorias extends javax.swing.JInternalFrame
         jLabel4 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         buscar = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         porcentajeJT = new javax.swing.JTextField();
+        baja = new javax.swing.JButton();
 
         setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         addInternalFrameListener(new javax.swing.event.InternalFrameListener()
@@ -151,7 +133,7 @@ public class VtnCategorias extends javax.swing.JInternalFrame
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 470, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 470, -1, -1));
 
         descripccionJT.setColumns(20);
         descripccionJT.setRows(5);
@@ -176,7 +158,7 @@ public class VtnCategorias extends javax.swing.JInternalFrame
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 470, -1, -1));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 470, -1, -1));
 
         jLabel4.setText("Activo");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 320, -1, -1));
@@ -189,22 +171,22 @@ public class VtnCategorias extends javax.swing.JInternalFrame
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 470, -1, -1));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 470, -1, -1));
         jPanel1.add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 650, -1));
-
-        jLabel5.setText("Baja");
-        jLabel5.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                jLabel5MouseClicked(evt);
-            }
-        });
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 50, 30, 20));
 
         jLabel6.setText("Porcentaje");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 230, -1, -1));
         jPanel1.add(porcentajeJT, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 250, 370, -1));
+
+        baja.setText("Baja");
+        baja.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                bajaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(baja, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 50, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 540));
 
@@ -271,7 +253,6 @@ public class VtnCategorias extends javax.swing.JInternalFrame
             String descripcion = modeloTabla.getValueAt(filaSeleccionada, 2).toString();
             String porcentaje = modeloTabla.getValueAt(filaSeleccionada, 3).toString();
             String estado = modeloTabla.getValueAt(filaSeleccionada, 4).toString();
-            
 
             categoriaJT.setText(nombreCategoria);
             descripccionJT.setText(descripcion);
@@ -286,50 +267,6 @@ public class VtnCategorias extends javax.swing.JInternalFrame
             }
         }
     }//GEN-LAST:event_tablaCategoriaMouseClicked
-
-    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel5MouseClicked
-    {//GEN-HEADEREND:event_jLabel5MouseClicked
-        int filaSeleccionada = tablaCategoria.getSelectedRow();
-
-        if (filaSeleccionada < 0 || filaSeleccionada >= tablaCategoria.getRowCount())
-        {
-            JOptionPane.showMessageDialog(this, "Debe seleccionar una categoría válida.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        int confirmacion = JOptionPane.showConfirmDialog(
-                this,
-                "¿Está seguro de que desea eliminar la categoría seleccionada?",
-                "Confirmación",
-                JOptionPane.YES_NO_OPTION,
-                JOptionPane.QUESTION_MESSAGE
-        );
-
-        if (confirmacion == JOptionPane.YES_OPTION)
-        {
-            DefaultTableModel modeloTabla = (DefaultTableModel) tablaCategoria.getModel();
-            Object valorCelda = tablaCategoria.getValueAt(filaSeleccionada, 0);
-
-            long categoriaId;
-            try
-            {
-                categoriaId = Long.parseLong(valorCelda.toString());
-            } catch (NumberFormatException e)
-            {
-                JOptionPane.showMessageDialog(this, "Error al obtener el código de la categoría.", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-
-            CategoriaDAO categoriaDAO = new CategoriaDAO();
-            categoriaDAO.eliminarCategoria(categoriaId);
-
-            llenarTablaCategorias();
-            JOptionPane.showMessageDialog(this, "Categoría eliminada correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-            CtrlInterfaz.limpia(categoriaJT, descripccionJT, porcentajeJT);
-            activoCB.setSelectedIndex(0);
-
-        }
-    }//GEN-LAST:event_jLabel5MouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton3ActionPerformed
     {//GEN-HEADEREND:event_jButton3ActionPerformed
@@ -389,6 +326,87 @@ public class VtnCategorias extends javax.swing.JInternalFrame
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void bajaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_bajaActionPerformed
+    {//GEN-HEADEREND:event_bajaActionPerformed
+
+        int filaSeleccionada = tablaCategoria.getSelectedRow();
+
+        if (filaSeleccionada < 0 || filaSeleccionada >= tablaCategoria.getRowCount())
+        {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una categoría válida.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        int confirmacion = JOptionPane.showConfirmDialog(
+                this,
+                "¿Está seguro de que desea eliminar la categoría seleccionada?",
+                "Confirmación",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE
+        );
+
+        if (confirmacion == JOptionPane.YES_OPTION)
+        {
+            DefaultTableModel modeloTabla = (DefaultTableModel) tablaCategoria.getModel();
+            Object valorCelda = tablaCategoria.getValueAt(filaSeleccionada, 0);
+
+            long categoriaId;
+            try
+            {
+                categoriaId = Long.parseLong(valorCelda.toString());
+            } catch (NumberFormatException e)
+            {
+                JOptionPane.showMessageDialog(this, "Error al obtener el código de la categoría.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            CategoriaDAO categoriaDAO = new CategoriaDAO();
+            ProductoDAO productoDAO = new ProductoDAO();
+            boolean tieneProductos = productoDAO.existenProductosPorCategoria(categoriaId);
+
+            if (tieneProductos)
+            {
+                JOptionPane.showMessageDialog(this,
+                        "No se puede eliminar la categoría porque tiene productos asociados.",
+                        "Advertencia",
+                        JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            categoriaDAO.eliminarCategoria(categoriaId);
+
+            llenarTablaCategorias();
+            JOptionPane.showMessageDialog(this, "Categoría eliminada correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            CtrlInterfaz.limpia(categoriaJT, descripccionJT, porcentajeJT);
+            activoCB.setSelectedIndex(0);
+
+        }
+
+    }//GEN-LAST:event_bajaActionPerformed
+    
+    public void filtro()
+    {
+        buscar.getDocument().addDocumentListener(new javax.swing.event.DocumentListener()
+        {
+            @Override
+            public void insertUpdate(javax.swing.event.DocumentEvent e)
+            {
+                filtrarCategorias();
+            }
+
+            @Override
+            public void removeUpdate(javax.swing.event.DocumentEvent e)
+            {
+                filtrarCategorias();
+            }
+
+            @Override
+            public void changedUpdate(javax.swing.event.DocumentEvent e)
+            {
+                filtrarCategorias();
+            }
+        });
+    }
+    
     private void llenarTablaCategorias()
     {
         DefaultTableModel modelo = (DefaultTableModel) tablaCategoria.getModel();
@@ -443,6 +461,7 @@ public class VtnCategorias extends javax.swing.JInternalFrame
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> activoCB;
+    private javax.swing.JButton baja;
     private javax.swing.JTextField buscar;
     private javax.swing.JTextField categoriaJT;
     private javax.swing.JTextArea descripccionJT;
@@ -453,7 +472,6 @@ public class VtnCategorias extends javax.swing.JInternalFrame
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
