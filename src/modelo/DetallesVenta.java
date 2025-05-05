@@ -20,9 +20,7 @@ public class DetallesVenta
 
     public DetallesVenta()
     {
-    }
-
-    
+    } 
 
     public DetallesVenta(int detalle_id, int venta_id, int producto_id, int cantidad, double precio_unitario, double subtotal)
     {

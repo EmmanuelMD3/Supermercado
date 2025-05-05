@@ -10,6 +10,7 @@ import dao.ClienteDAO;
 import dao.DetalleVentaDAO;
 import dao.ProductoDAO;
 import dao.VentaDAO;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
@@ -321,7 +322,7 @@ public class VtnVenta extends javax.swing.JInternalFrame
 
         actualizarResumenVenta();
         cantidadJS.setValue(1);
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton2ActionPerformed
@@ -383,10 +384,8 @@ public class VtnVenta extends javax.swing.JInternalFrame
             return;
         }
 
-        ClienteDAO cliente = new ClienteDAO();
-        ProductoDAO productoDAO = new ProductoDAO();
-        
-        int clienteID = cliente.obtenerIdPorNombreCompleto(nombreCliente);
+        ClienteDAO clienteDAO = new ClienteDAO();
+        int clienteID = clienteDAO.obtenerIdPorNombreCompleto(nombreCliente);
 
         if (clienteID == -1)
         {
@@ -395,24 +394,14 @@ public class VtnVenta extends javax.swing.JInternalFrame
         }
 
         int metodoPago = pagoCB.getSelectedIndex();
-
         double total = Double.parseDouble(campoTotalVenta.getText());
         double descuento = Double.parseDouble(campoDescuento.getText());
         double iva = Double.parseDouble(campoIVA.getText());
 
         Venta nuevaVenta = new Venta(total, descuento, iva, clienteID, idEmpleado, metodoPago, 1);
 
-        VentaDAO ventaDAO = new VentaDAO();
-        int ventaId = ventaDAO.registrarVenta(nuevaVenta);
-
-        if (ventaId == -1)
-        {
-            JOptionPane.showMessageDialog(this, "Error al registrar la venta.");
-            return;
-        }
-
         DefaultTableModel modelo = (DefaultTableModel) tablaCarrito.getModel();
-        DetalleVentaDAO detalleDAO = new DetalleVentaDAO();
+        List<DetallesVenta> listaDetalles = new ArrayList<>();
 
         for (int i = 0; i < modelo.getRowCount(); i++)
         {
@@ -421,14 +410,21 @@ public class VtnVenta extends javax.swing.JInternalFrame
             double precioU = (double) modelo.getValueAt(i, 3);
             double subtotal = (double) modelo.getValueAt(i, 4);
 
-            DetallesVenta nuevoDetalle = new DetallesVenta(ventaId, idProducto, cantidad, precioU, subtotal);
-            detalleDAO.registrarDetalleVenta(nuevoDetalle);
-            
-            productoDAO.reducirStock(idProducto, cantidad);            
+            DetallesVenta detalle = new DetallesVenta(0, idProducto, cantidad, precioU, subtotal);
+            listaDetalles.add(detalle);
         }
 
-        JOptionPane.showMessageDialog(this, "¡Venta registrada correctamente!");
-        limpiaCampos();
+        VentaDAO dao = new VentaDAO();
+        boolean exito = dao.registrarVentaConDetalles(nuevaVenta, listaDetalles);
+
+        if (exito)
+        {
+            JOptionPane.showMessageDialog(this, "¡Venta registrada correctamente!");
+            limpiaCampos();
+        } else
+        {
+            JOptionPane.showMessageDialog(this, "Error al registrar la venta. No se guardó nada.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     public void llenarComboCategoria(JComboBox<String> comboCategoria)

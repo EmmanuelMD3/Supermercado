@@ -4,11 +4,20 @@
  */
 package interfaz;
 
+import dao.ClienteDAO;
 import dao.DetalleVentaDAO;
+import dao.EmpleadoDAO;
 import dao.VentaDAO;
+import java.awt.event.ItemEvent;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
+import modelo.Cliente;
+import modelo.Empleado;
+import modelo.Venta;
 
 /**
  *
@@ -44,6 +53,15 @@ public class VtnDetalleVenta extends javax.swing.JInternalFrame
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaDetalleVenta = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        empleadoCB = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        clienteCB = new javax.swing.JComboBox<>();
+        jLabel6 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        calendario = new com.toedter.calendar.JDateChooser();
+        jButton2 = new javax.swing.JButton();
 
         setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         addInternalFrameListener(new javax.swing.event.InternalFrameListener()
@@ -105,10 +123,10 @@ public class VtnDetalleVenta extends javax.swing.JInternalFrame
         });
         jScrollPane1.setViewportView(tablaVenta);
 
-        aaa.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 1200, 190));
+        aaa.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 1200, 180));
 
         jLabel1.setText("TABLA VENTAS");
-        aaa.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 10, -1, -1));
+        aaa.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 90, -1, -1));
 
         tablaDetalleVenta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][]
@@ -133,10 +151,63 @@ public class VtnDetalleVenta extends javax.swing.JInternalFrame
         });
         jScrollPane2.setViewportView(tablaDetalleVenta);
 
-        aaa.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 1200, 280));
+        aaa.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 1200, 210));
 
         jLabel2.setText("DETALLE VENTA");
-        aaa.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 230, -1, -1));
+        aaa.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 300, -1, -1));
+
+        jLabel3.setText("Filtros:");
+        aaa.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 0, -1, -1));
+
+        empleadoCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        empleadoCB.addItemListener(new java.awt.event.ItemListener()
+        {
+            public void itemStateChanged(java.awt.event.ItemEvent evt)
+            {
+                empleadoCBItemStateChanged(evt);
+            }
+        });
+        empleadoCB.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                empleadoCBMouseClicked(evt);
+            }
+        });
+        aaa.add(empleadoCB, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 40, 130, -1));
+
+        jLabel4.setText("Empleado:");
+        aaa.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 20, -1, -1));
+
+        jLabel5.setText("Cliente:");
+        aaa.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 70, -1, -1));
+
+        clienteCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        aaa.add(clienteCB, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 90, 130, -1));
+
+        jLabel6.setText("Fecha:");
+        aaa.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 20, -1, -1));
+
+        jButton1.setText("Aceptar");
+        jButton1.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        aaa.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 90, -1, -1));
+        aaa.add(calendario, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 40, 140, -1));
+
+        jButton2.setText("Limpiar");
+        jButton2.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        aaa.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 90, -1, -1));
 
         getContentPane().add(aaa, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 540));
 
@@ -146,6 +217,8 @@ public class VtnDetalleVenta extends javax.swing.JInternalFrame
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt)//GEN-FIRST:event_formInternalFrameOpened
     {//GEN-HEADEREND:event_formInternalFrameOpened
         llenarTablaVentas();
+        llenarComboClientes(clienteCB);
+        llenarComboEmpleados(empleadoCB);
     }//GEN-LAST:event_formInternalFrameOpened
 
     private void tablaVentaMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_tablaVentaMouseClicked
@@ -157,6 +230,51 @@ public class VtnDetalleVenta extends javax.swing.JInternalFrame
             cargarDetallesPorVenta(ventaId);
         }
     }//GEN-LAST:event_tablaVentaMouseClicked
+
+    private void empleadoCBMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_empleadoCBMouseClicked
+    {//GEN-HEADEREND:event_empleadoCBMouseClicked
+
+    }//GEN-LAST:event_empleadoCBMouseClicked
+
+    private void empleadoCBItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_empleadoCBItemStateChanged
+    {//GEN-HEADEREND:event_empleadoCBItemStateChanged
+//        if (evt.getStateChange() == ItemEvent.SELECTED)
+//        {
+//            aplicarFiltros();
+//        }
+    }//GEN-LAST:event_empleadoCBItemStateChanged
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
+    {//GEN-HEADEREND:event_jButton1ActionPerformed
+        aplicarFiltros();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton2ActionPerformed
+    {//GEN-HEADEREND:event_jButton2ActionPerformed
+        llenarTablaVentas();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void aplicarFiltros()
+    {
+        String empleado = (String) empleadoCB.getSelectedItem();
+        String cliente = (String) clienteCB.getSelectedItem();
+        Date fecha = calendario.getDate();
+
+        VentaDAO ventaDAO = new VentaDAO();
+        List<Object[]> ventasFiltradas = ventaDAO.filtrarVentas(empleado, cliente, fecha);
+        mostrarVentasFiltradas(ventasFiltradas);
+    }
+
+    private void mostrarVentasFiltradas(List<Object[]> lista)
+    {
+        DefaultTableModel modelo = (DefaultTableModel) tablaVenta.getModel();
+        modelo.setRowCount(0);
+
+        for (Object[] fila : lista)
+        {
+            modelo.addRow(fila);
+        }
+    }
 
     public void llenarTablaVentas()
     {
@@ -178,7 +296,7 @@ public class VtnDetalleVenta extends javax.swing.JInternalFrame
         List<Object[]> filas = dao.obtenerFilasParaTabla(ventaId);
 
         DefaultTableModel modelo = (DefaultTableModel) tablaDetalleVenta.getModel();
-        modelo.setRowCount(0); // Limpiar tabla
+        modelo.setRowCount(0);
 
         for (Object[] fila : filas)
         {
@@ -186,11 +304,52 @@ public class VtnDetalleVenta extends javax.swing.JInternalFrame
         }
     }
 
+    public void llenarComboClientes(JComboBox<String> combo)
+    {
+        ClienteDAO clienteDAO = new ClienteDAO();
+        List<Cliente> lista = clienteDAO.obtenerTodosLosClientes();
+
+        DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
+        modelo.addElement("Seleccione un Cliente");
+
+        for (Cliente c : lista)
+        {
+            modelo.addElement(c.getNombre() + " " + c.getApellido());
+        }
+
+        combo.setModel(modelo);
+    }
+
+    public void llenarComboEmpleados(JComboBox<String> combo)
+    {
+        EmpleadoDAO empleadoDAO = new EmpleadoDAO();
+        List<Empleado> lista = empleadoDAO.obtenerTodosLosEmpleados();
+
+        DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
+        modelo.addElement("Seleccione un Empleado");
+
+        for (Empleado e : lista)
+        {
+            modelo.addElement(e.getNombre() + " " + e.getApellido());
+        }
+
+        combo.setModel(modelo);
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel aaa;
+    private com.toedter.calendar.JDateChooser calendario;
+    private javax.swing.JComboBox<String> clienteCB;
+    private javax.swing.JComboBox<String> empleadoCB;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tablaDetalleVenta;

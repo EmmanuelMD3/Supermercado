@@ -16,6 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 import modelo.Venta;
 import java.text.SimpleDateFormat;
+import java.util.Date;
+import modelo.DetallesVenta;
 
 /**
  *
@@ -121,6 +123,178 @@ public class VentaDAO
         } catch (SQLException e)
         {
             System.err.println("Error al obtener ventas: " + e.getMessage());
+        }
+
+        return lista;
+    }
+
+    public boolean registrarVentaConDetalles(Venta venta, List<DetallesVenta> detalles)
+    {
+        Connection conn = null;
+        PreparedStatement ventaStmt = null;
+        PreparedStatement detalleStmt = null;
+        PreparedStatement stockStmt = null;
+
+        String ventaSQL = "INSERT INTO venta (total, descuento, impuesto, cliente_id, empleado_id, metodo_pago, estado) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String detalleSQL = "INSERT INTO detalles_venta (venta_id, producto_id, cantidad, precio_unitario, subtotal) VALUES (?, ?, ?, ?, ?)";
+        String stockSQL = "UPDATE inventario SET cantidad = cantidad - ? WHERE producto_id = ?";
+
+        try
+        {
+            conn = Conexion.conectar();
+            conn.setAutoCommit(false);
+
+            ventaStmt = conn.prepareStatement(ventaSQL, Statement.RETURN_GENERATED_KEYS);
+            ventaStmt.setDouble(1, venta.getTotal());
+            ventaStmt.setDouble(2, venta.getDescuento());
+            ventaStmt.setDouble(3, venta.getImpuesto());
+            ventaStmt.setInt(4, venta.getCliente_id());
+            ventaStmt.setInt(5, venta.getEmpleado_id());
+            ventaStmt.setInt(6, venta.getMetodo_pago());
+            ventaStmt.setInt(7, venta.getEstado());
+
+            int filasVenta = ventaStmt.executeUpdate();
+            if (filasVenta == 0)
+            {
+                conn.rollback();
+                return false;
+            }
+
+            ResultSet rs = ventaStmt.getGeneratedKeys();
+            if (!rs.next())
+            {
+                conn.rollback();
+                return false;
+            }
+
+            int ventaId = rs.getInt(1);
+
+            detalleStmt = conn.prepareStatement(detalleSQL);
+            stockStmt = conn.prepareStatement(stockSQL);
+
+            for (DetallesVenta d : detalles)
+            {
+                detalleStmt.setInt(1, ventaId);
+                detalleStmt.setInt(2, d.getProducto_id());
+                detalleStmt.setInt(3, d.getCantidad());
+                detalleStmt.setDouble(4, d.getPrecio_unitario());
+                detalleStmt.setDouble(5, d.getSubtotal());
+                detalleStmt.executeUpdate();
+
+                stockStmt.setInt(1, d.getCantidad());
+                stockStmt.setInt(2, d.getProducto_id());
+                stockStmt.executeUpdate();
+            }
+
+            conn.commit();
+            return true;
+
+        } catch (SQLException e)
+        {
+            try
+            {
+                if (conn != null)
+                {
+                    conn.rollback();
+                }
+            } catch (SQLException ex2)
+            {
+                System.err.println("Error en rollback: " + ex2.getMessage());
+            }
+            System.err.println("Error en transacción de venta: " + e.getMessage());
+            return false;
+
+        } finally
+        {
+            try
+            {
+                if (ventaStmt != null)
+                {
+                    ventaStmt.close();
+                }
+                if (detalleStmt != null)
+                {
+                    detalleStmt.close();
+                }
+                if (stockStmt != null)
+                {
+                    stockStmt.close();
+                }
+                if (conn != null)
+                {
+                    conn.setAutoCommit(true);
+                }
+                conn.close();
+            } catch (SQLException e)
+            {
+                System.err.println("Error al cerrar recursos: " + e.getMessage());
+            }
+        }
+    }
+
+    public List<Object[]> filtrarVentas(String empleadoNombre, String clienteNombre, Date fecha)
+    {
+        List<Object[]> lista = new ArrayList<>();
+        StringBuilder sql = new StringBuilder(
+                "SELECT v.venta_id, v.fecha_venta, CONCAT(c.nombre, ' ', c.apellido), CONCAT(e.nombre, ' ', e.apellido), "
+                + "v.total, v.descuento, v.impuesto, v.metodo_pago, v.estado "
+                + "FROM venta v "
+                + "JOIN cliente c ON v.cliente_id = c.cliente_id "
+                + "JOIN empleado e ON v.empleado_id = e.empleado_id WHERE 1=1");
+
+        if (clienteNombre != null && !clienteNombre.equals("Seleccione un Cliente"))
+        {
+            sql.append(" AND CONCAT(c.nombre, ' ', c.apellido) = ?");
+        }
+
+        if (empleadoNombre != null && !empleadoNombre.equals("Seleccione un Empleado"))
+        {
+            sql.append(" AND CONCAT(e.nombre, ' ', e.apellido) = ?");
+        }
+
+        if (fecha != null)
+        {
+            sql.append(" AND DATE(v.fecha_venta) = ?");
+        }
+
+        try (Connection conn = Conexion.conectar(); PreparedStatement pstmt = conn.prepareStatement(sql.toString()))
+        {
+            int index = 1;
+            if (clienteNombre != null && !clienteNombre.equals("Seleccione un Cliente"))
+            {
+                pstmt.setString(index++, clienteNombre);
+            }
+
+            if (empleadoNombre != null && !empleadoNombre.equals("Seleccione un Empleado"))
+            {
+                pstmt.setString(index++, empleadoNombre);
+            }
+
+            if (fecha != null)
+            {
+                pstmt.setDate(index, new java.sql.Date(fecha.getTime()));
+            }
+
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next())
+            {
+                Object[] fila =
+                {
+                    rs.getInt(1), 
+                    rs.getTimestamp(2), 
+                    rs.getString(3), 
+                    rs.getString(4), 
+                    rs.getDouble(5), 
+                    rs.getDouble(6), 
+                    rs.getDouble(7), 
+                    rs.getInt(8) == 0 ? "Efectivo" : "Tarjeta", // Método pago
+                    rs.getInt(9) == 1 ? "Pagado" : "Pendiente"  // Estado
+                };
+                lista.add(fila);
+            }
+        } catch (SQLException e)
+        {
+            System.err.println("Error al filtrar ventas: " + e.getMessage());
         }
 
         return lista;

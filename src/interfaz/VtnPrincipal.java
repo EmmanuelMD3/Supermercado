@@ -143,6 +143,13 @@ public class VtnPrincipal extends javax.swing.JFrame
         menuDetalleVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/vendedor.png"))); // NOI18N
         menuDetalleVenta.setText("Detalles Ventas");
         menuDetalleVenta.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        menuDetalleVenta.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                menuDetalleVentaMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(menuDetalleVenta);
 
         menuCaja.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cajero.png"))); // NOI18N
@@ -295,6 +302,20 @@ public class VtnPrincipal extends javax.swing.JFrame
         }
     }//GEN-LAST:event_opcCerrarSecionMouseClicked
 
+    private void menuDetalleVentaMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_menuDetalleVentaMouseClicked
+    {//GEN-HEADEREND:event_menuDetalleVentaMouseClicked
+        boolean acceso = menuDetalleVenta.isEnabled();
+        if (acceso)
+        {
+            panelControl.removeAll();
+            VtnDetalleVenta detalleVenta = new VtnDetalleVenta();
+            panelControl.add(detalleVenta).setVisible(true);
+        } else
+        {
+            JOptionPane.showMessageDialog(this, "Inicie sesion como administrador", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_menuDetalleVentaMouseClicked
+
     public void setDatosEmpleado(int idEmpleado, int rol, String nombre)
     {
         this.idEmpleado = idEmpleado;
@@ -316,6 +337,7 @@ public class VtnPrincipal extends javax.swing.JFrame
         jMenu2.setText("Usuario");
         menuAdmin.setEnabled(false);
         menuCaja.setEnabled(false);
+        menuDetalleVenta.setEnabled(false);
         opcCerrarSecion.setEnabled(false);
 
         panelControl.removeAll();
