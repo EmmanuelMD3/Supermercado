@@ -62,6 +62,11 @@ public class VtnDetalleVenta extends javax.swing.JInternalFrame
         jButton1 = new javax.swing.JButton();
         calendario = new com.toedter.calendar.JDateChooser();
         jButton2 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
 
         setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         addInternalFrameListener(new javax.swing.event.InternalFrameListener()
@@ -91,8 +96,10 @@ public class VtnDetalleVenta extends javax.swing.JInternalFrame
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        aaa.setBackground(new java.awt.Color(255, 255, 255));
         aaa.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        tablaVenta.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         tablaVenta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][]
             {
@@ -123,11 +130,13 @@ public class VtnDetalleVenta extends javax.swing.JInternalFrame
         });
         jScrollPane1.setViewportView(tablaVenta);
 
-        aaa.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 1200, 180));
+        aaa.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 1200, 180));
 
+        jLabel1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         jLabel1.setText("TABLA VENTAS");
-        aaa.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 90, -1, -1));
+        aaa.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, -1, -1));
 
+        tablaDetalleVenta.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         tablaDetalleVenta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][]
             {
@@ -151,14 +160,17 @@ public class VtnDetalleVenta extends javax.swing.JInternalFrame
         });
         jScrollPane2.setViewportView(tablaDetalleVenta);
 
-        aaa.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 1200, 210));
+        aaa.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 400, 1200, 210));
 
+        jLabel2.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         jLabel2.setText("DETALLE VENTA");
-        aaa.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 300, -1, -1));
+        aaa.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, -1, -1));
 
+        jLabel3.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
         jLabel3.setText("Filtros:");
-        aaa.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 0, -1, -1));
+        aaa.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 10, -1, -1));
 
+        empleadoCB.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         empleadoCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         empleadoCB.addItemListener(new java.awt.event.ItemListener()
         {
@@ -174,20 +186,26 @@ public class VtnDetalleVenta extends javax.swing.JInternalFrame
                 empleadoCBMouseClicked(evt);
             }
         });
-        aaa.add(empleadoCB, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 40, 130, -1));
+        aaa.add(empleadoCB, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 40, 210, -1));
 
+        jLabel4.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         jLabel4.setText("Empleado:");
-        aaa.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 20, -1, -1));
+        aaa.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 40, -1, -1));
 
+        jLabel5.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         jLabel5.setText("Cliente:");
-        aaa.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 70, -1, -1));
+        aaa.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 80, -1, -1));
 
+        clienteCB.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         clienteCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        aaa.add(clienteCB, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 90, 130, -1));
+        aaa.add(clienteCB, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 80, 210, -1));
 
-        jLabel6.setText("Fecha:");
-        aaa.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 20, -1, -1));
+        jLabel6.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jLabel6.setText(" Fecha:");
+        aaa.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 120, -1, -1));
 
+        jButton1.setBackground(new java.awt.Color(51, 255, 51));
+        jButton1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         jButton1.setText("Aceptar");
         jButton1.addActionListener(new java.awt.event.ActionListener()
         {
@@ -196,9 +214,10 @@ public class VtnDetalleVenta extends javax.swing.JInternalFrame
                 jButton1ActionPerformed(evt);
             }
         });
-        aaa.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 90, -1, -1));
-        aaa.add(calendario, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 40, 140, -1));
+        aaa.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 50, 110, -1));
+        aaa.add(calendario, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 120, 210, -1));
 
+        jButton2.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         jButton2.setText("Limpiar");
         jButton2.addActionListener(new java.awt.event.ActionListener()
         {
@@ -207,9 +226,25 @@ public class VtnDetalleVenta extends javax.swing.JInternalFrame
                 jButton2ActionPerformed(evt);
             }
         });
-        aaa.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 90, -1, -1));
+        aaa.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 90, 110, -1));
 
-        getContentPane().add(aaa, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 540));
+        jPanel1.setBackground(new java.awt.Color(204, 255, 204));
+        aaa.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 380, 1200, 240));
+
+        jPanel2.setBackground(new java.awt.Color(204, 255, 255));
+        aaa.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 1200, 200));
+
+        jLabel7.setFont(new java.awt.Font("Arial Rounded MT Bold", 2, 48)); // NOI18N
+        jLabel7.setText("Detalles - ventas");
+        aaa.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, 390, -1));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/venta-al-por-menor.png"))); // NOI18N
+        aaa.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 20, 100, -1));
+
+        jPanel3.setBackground(new java.awt.Color(204, 204, 255));
+        aaa.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 20, 450, 130));
+
+        getContentPane().add(aaa, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 630));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -350,6 +385,11 @@ public class VtnDetalleVenta extends javax.swing.JInternalFrame
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tablaDetalleVenta;

@@ -56,6 +56,7 @@ public class VtnLogin extends javax.swing.JDialog
         usuarioTF = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         mostrarCheckBox = new javax.swing.JCheckBox();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Inicia Sesion");
@@ -75,7 +76,7 @@ public class VtnLogin extends javax.swing.JDialog
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, -1, -1));
 
         jButton2.setBackground(new java.awt.Color(255, 0, 0));
         jButton2.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
@@ -88,21 +89,21 @@ public class VtnLogin extends javax.swing.JDialog
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, -1, -1));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 310, -1, -1));
 
         contraseñaTF.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jPanel1.add(contraseñaTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 340, -1));
+        jPanel1.add(contraseñaTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 340, -1));
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jLabel2.setText("CONTRASEÑA:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 130, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 130, -1));
 
         usuarioTF.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jPanel1.add(usuarioTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 340, -1));
+        jPanel1.add(usuarioTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 340, -1));
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jLabel1.setText("USUARIO:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, -1, -1));
 
         mostrarCheckBox.setBackground(new java.awt.Color(255, 255, 255));
         mostrarCheckBox.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -115,9 +116,12 @@ public class VtnLogin extends javax.swing.JDialog
                 mostrarCheckBoxActionPerformed(evt);
             }
         });
-        jPanel1.add(mostrarCheckBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, -1, -1));
+        jPanel1.add(mostrarCheckBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 250));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iniciar-sesion (1).png"))); // NOI18N
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, 100, 100));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 360));
 
         pack();
         setLocationRelativeTo(null);
@@ -234,6 +238,7 @@ public class VtnLogin extends javax.swing.JDialog
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JCheckBox mostrarCheckBox;
     private javax.swing.JTextField usuarioTF;

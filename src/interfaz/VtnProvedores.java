@@ -58,8 +58,12 @@ public class VtnProvedores extends javax.swing.JInternalFrame
     private void initComponents()
     {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tablaProvedor = new javax.swing.JTable();
+        buscar = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         nombreJT = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -70,17 +74,18 @@ public class VtnProvedores extends javax.swing.JInternalFrame
         emailJT = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         direccionJT = new javax.swing.JTextField();
-        activoCB = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
+        activoCB = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        buscar = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaProvedor = new javax.swing.JTable();
+        jLabel9 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        setPreferredSize(new java.awt.Dimension(1200, 561));
+        setPreferredSize(new java.awt.Dimension(1200, 650));
         addInternalFrameListener(new javax.swing.event.InternalFrameListener()
         {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt)
@@ -108,6 +113,116 @@ public class VtnProvedores extends javax.swing.JInternalFrame
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        buscar.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        buscar.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        getContentPane().add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 580, -1));
+
+        jLabel7.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/basura.png"))); // NOI18N
+        jLabel7.setText("Bajas");
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jLabel7MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 110, -1, 30));
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel8.setFont(new java.awt.Font("Arial Rounded MT Bold", 2, 48)); // NOI18N
+        jLabel8.setText("Proveedor");
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, 260, -1));
+
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/proveedores.png"))); // NOI18N
+        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 0, 110, 80));
+
+        jPanel1.setBackground(new java.awt.Color(204, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jLabel1.setText("Nombre:");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        nombreJT.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jPanel1.add(nombreJT, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 340, -1));
+
+        jLabel2.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jLabel2.setText("Contacto:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
+
+        contactoJT.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jPanel1.add(contactoJT, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 340, -1));
+
+        jLabel3.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jLabel3.setText("Teléfono:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
+
+        telefonoJT.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jPanel1.add(telefonoJT, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 340, -1));
+
+        jLabel4.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jLabel4.setText("Correo electrónico:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, -1));
+
+        emailJT.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jPanel1.add(emailJT, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 340, -1));
+
+        jLabel5.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jLabel5.setText("Dirección:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, -1, -1));
+
+        direccionJT.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jPanel1.add(direccionJT, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 340, -1));
+
+        jLabel6.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jLabel6.setText("Activo:");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, -1, -1));
+
+        activoCB.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        activoCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ACTIVO", "INACTIVO" }));
+        jPanel1.add(activoCB, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, -1, -1));
+
+        jButton1.setBackground(new java.awt.Color(51, 255, 51));
+        jButton1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jButton1.setText("Aceptar");
+        jButton1.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 110, 30));
+
+        jButton3.setBackground(new java.awt.Color(102, 204, 255));
+        jButton3.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jButton3.setText("Modificar");
+        jButton3.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 320, 110, 30));
+
+        jButton2.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jButton2.setText("Limpiar");
+        jButton2.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 320, 100, 30));
+
+        jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 170, 360, 370));
+
+        tablaProvedor.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         tablaProvedor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][]
             {
@@ -138,79 +253,13 @@ public class VtnProvedores extends javax.swing.JInternalFrame
         });
         jScrollPane1.setViewportView(tablaProvedor);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 790, -1));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 790, 460));
 
-        jLabel1.setText("nombre");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 120, -1, -1));
-        getContentPane().add(nombreJT, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 150, 340, -1));
+        jLabel9.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jLabel9.setText("Buscar:");
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
 
-        jLabel2.setText("contacto");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 180, -1, -1));
-        getContentPane().add(contactoJT, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 200, 340, -1));
-
-        jLabel3.setText("telefono");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 230, -1, -1));
-        getContentPane().add(telefonoJT, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 250, 340, -1));
-
-        jLabel4.setText("email");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 280, -1, -1));
-        getContentPane().add(emailJT, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 300, 340, -1));
-
-        jLabel5.setText("direccion");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 340, -1, -1));
-        getContentPane().add(direccionJT, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 360, 340, -1));
-
-        activoCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ACTIVO", "INACTIVO" }));
-        getContentPane().add(activoCB, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 420, -1, -1));
-
-        jLabel6.setText("activo");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 400, -1, -1));
-
-        jButton1.setText("aceptar");
-        jButton1.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 480, -1, -1));
-
-        jButton2.setText("limpiar");
-        jButton2.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 480, -1, -1));
-
-        jButton3.setText("modificar");
-        jButton3.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 480, -1, -1));
-
-        buscar.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        getContentPane().add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, 640, -1));
-
-        jLabel7.setText("Bajas");
-        jLabel7.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                jLabel7MouseClicked(evt);
-            }
-        });
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 60, 40, 20));
-
-        jLabel8.setText("Provedor");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, 80, -1));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 630));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -467,6 +516,7 @@ public class VtnProvedores extends javax.swing.JInternalFrame
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -474,6 +524,9 @@ public class VtnProvedores extends javax.swing.JInternalFrame
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField nombreJT;
     private javax.swing.JTable tablaProvedor;

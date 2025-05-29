@@ -90,17 +90,19 @@ public class VtnProductos extends javax.swing.JInternalFrame
         activoCB = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         provedorCB = new javax.swing.JComboBox<>();
-        alta = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        altaB = new javax.swing.JButton();
+        modificarB = new javax.swing.JButton();
+        limpiarB = new javax.swing.JButton();
         buscar = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
+        eliminarB = new javax.swing.JButton();
         stockInicialS = new javax.swing.JSpinner();
         jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
 
         setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        setPreferredSize(new java.awt.Dimension(1200, 560));
+        setPreferredSize(new java.awt.Dimension(1200, 650));
         addInternalFrameListener(new javax.swing.event.InternalFrameListener()
         {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt)
@@ -128,9 +130,11 @@ public class VtnProductos extends javax.swing.JInternalFrame
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setPreferredSize(new java.awt.Dimension(1200, 560));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1200, 630));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        tablaProductos.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         tablaProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][]
             {
@@ -161,19 +165,27 @@ public class VtnProductos extends javax.swing.JInternalFrame
         });
         jScrollPane1.setViewportView(tablaProductos);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 1200, 350));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 1200, 350));
 
-        jLabel1.setText("buscar");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
-        jPanel1.add(nombreJT, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 250, -1));
+        jLabel1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jLabel1.setText("Buscar:");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, -1, -1));
 
-        jLabel2.setText("Descripcion");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
-        jPanel1.add(descripcionJT, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 250, -1));
+        nombreJT.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jPanel1.add(nombreJT, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, 250, -1));
 
-        jLabel3.setText("Precio compra");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
+        jLabel2.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jLabel2.setText("Descripción:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, -1, -1));
 
+        descripcionJT.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jPanel1.add(descripcionJT, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, 250, -1));
+
+        jLabel3.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jLabel3.setText("Precio compra:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, -1, -1));
+
+        precioCompraJT.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         precioCompraJT.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -181,90 +193,120 @@ public class VtnProductos extends javax.swing.JInternalFrame
                 precioCompraJTActionPerformed(evt);
             }
         });
-        jPanel1.add(precioCompraJT, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 250, -1));
+        jPanel1.add(precioCompraJT, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 250, -1));
 
-        jLabel4.setText("Stock Inicial");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 60, -1, -1));
+        jLabel4.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jLabel4.setText("Stock inicial:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 200, -1, -1));
 
         precioVentaJT.setEditable(false);
-        jPanel1.add(precioVentaJT, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, 240, -1));
+        precioVentaJT.setBackground(new java.awt.Color(69, 73, 74));
+        precioVentaJT.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jPanel1.add(precioVentaJT, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, 250, -1));
 
+        stockMinS.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         stockMinS.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
         stockMinS.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jPanel1.add(stockMinS, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 80, 100, -1));
+        jPanel1.add(stockMinS, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 200, 100, 30));
 
-        jLabel5.setText("Precio venta");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, -1, -1));
+        jLabel5.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jLabel5.setText(" Precio venta:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, -1, -1));
 
-        jLabel6.setText("Categoria");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 160, -1, -1));
+        jLabel6.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jLabel6.setText(" Categoria:");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 160, -1, -1));
 
+        categoriaCB.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         categoriaCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(categoriaCB, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 180, 240, -1));
+        jPanel1.add(categoriaCB, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 160, 240, -1));
 
-        jLabel7.setText("Activo");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 110, -1, -1));
+        jLabel7.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jLabel7.setText("Activo:");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 120, -1, -1));
 
+        activoCB.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         activoCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
-        jPanel1.add(activoCB, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 130, 100, -1));
+        jPanel1.add(activoCB, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 120, 100, 30));
 
-        jLabel8.setText("Provedor");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, -1, -1));
+        jLabel8.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jLabel8.setText("Proveedor:");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 120, -1, -1));
 
+        provedorCB.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         provedorCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(provedorCB, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 130, 240, -1));
+        jPanel1.add(provedorCB, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 120, 240, -1));
 
-        alta.setText("aceptar");
-        alta.addActionListener(new java.awt.event.ActionListener()
+        altaB.setBackground(new java.awt.Color(51, 255, 51));
+        altaB.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        altaB.setText("Aceptar");
+        altaB.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                altaActionPerformed(evt);
+                altaBActionPerformed(evt);
             }
         });
-        jPanel1.add(alta, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 180, -1, -1));
+        jPanel1.add(altaB, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 120, 100, -1));
 
-        jButton2.setText("modificar");
-        jButton2.addActionListener(new java.awt.event.ActionListener()
+        modificarB.setBackground(new java.awt.Color(102, 204, 255));
+        modificarB.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        modificarB.setText("Modificar");
+        modificarB.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                jButton2ActionPerformed(evt);
+                modificarBActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 180, -1, -1));
+        jPanel1.add(modificarB, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 150, 110, -1));
 
-        jButton3.setText("limpiar");
-        jButton3.addActionListener(new java.awt.event.ActionListener()
+        limpiarB.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        limpiarB.setText("Limpiar");
+        limpiarB.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                jButton3ActionPerformed(evt);
+                limpiarBActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 180, -1, -1));
-        jPanel1.add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 650, -1));
+        jPanel1.add(limpiarB, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 180, 90, -1));
 
-        jLabel9.setText("Nombre");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
+        buscar.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jPanel1.add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 400, -1));
 
-        jButton4.setText("eliminar");
-        jButton4.addActionListener(new java.awt.event.ActionListener()
+        jLabel9.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jLabel9.setText("Nombre:");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, -1, -1));
+
+        eliminarB.setBackground(new java.awt.Color(255, 51, 51));
+        eliminarB.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        eliminarB.setText("Eliminar");
+        eliminarB.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                jButton4ActionPerformed(evt);
+                eliminarBActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 180, -1, -1));
+        jPanel1.add(eliminarB, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 210, 100, -1));
 
+        stockInicialS.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         stockInicialS.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
-        jPanel1.add(stockInicialS, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 80, 90, -1));
+        jPanel1.add(stockInicialS, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 200, 90, 30));
 
-        jLabel10.setText("Stock Minimo");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 60, -1, -1));
+        jLabel10.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jLabel10.setText("Stock mínimo:");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 200, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 540));
+        jLabel11.setFont(new java.awt.Font("Arial Rounded MT Bold", 2, 48)); // NOI18N
+        jLabel11.setText("Productos");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, 250, -1));
+
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agregar-producto.png"))); // NOI18N
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 0, 100, 90));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 630));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -277,8 +319,8 @@ public class VtnProductos extends javax.swing.JInternalFrame
         calcularPrecioVenta();
     }//GEN-LAST:event_formInternalFrameOpened
 
-    private void altaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_altaActionPerformed
-    {//GEN-HEADEREND:event_altaActionPerformed
+    private void altaBActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_altaBActionPerformed
+    {//GEN-HEADEREND:event_altaBActionPerformed
         String nombre = nombreJT.getText().trim();
         String descripcion = descripcionJT.getText().trim();
         String precioCompraStr = precioCompraJT.getText().trim();
@@ -354,10 +396,10 @@ public class VtnProductos extends javax.swing.JInternalFrame
         {
             JOptionPane.showMessageDialog(this, "Ocurrió un error al registrar el producto.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_altaActionPerformed
+    }//GEN-LAST:event_altaBActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton2ActionPerformed
-    {//GEN-HEADEREND:event_jButton2ActionPerformed
+    private void modificarBActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_modificarBActionPerformed
+    {//GEN-HEADEREND:event_modificarBActionPerformed
         int filaSeleccionada = tablaProductos.getSelectedRow();
 
         if (filaSeleccionada == -1)
@@ -429,7 +471,7 @@ public class VtnProductos extends javax.swing.JInternalFrame
         {
             JOptionPane.showMessageDialog(this, "Error al convertir precios o stock. Verifique los valores ingresados.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_modificarBActionPerformed
 
     private void tablaProductosMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_tablaProductosMouseClicked
     {//GEN-HEADEREND:event_tablaProductosMouseClicked
@@ -475,18 +517,18 @@ public class VtnProductos extends javax.swing.JInternalFrame
         }
     }//GEN-LAST:event_tablaProductosMouseClicked
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton3ActionPerformed
-    {//GEN-HEADEREND:event_jButton3ActionPerformed
+    private void limpiarBActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_limpiarBActionPerformed
+    {//GEN-HEADEREND:event_limpiarBActionPerformed
         CtrlInterfaz.limpia(nombreJT, descripcionJT, precioCompraJT, precioVentaJT);
         stockMinS.setValue(1);
         provedorCB.setSelectedIndex(0);
         categoriaCB.setSelectedIndex(0);
         activoCB.setSelectedIndex(0);
         stockInicialS.setValue(1);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_limpiarBActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton4ActionPerformed
-    {//GEN-HEADEREND:event_jButton4ActionPerformed
+    private void eliminarBActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_eliminarBActionPerformed
+    {//GEN-HEADEREND:event_eliminarBActionPerformed
         int filaSeleccionada = tablaProductos.getSelectedRow();
 
         if (filaSeleccionada < 0 || filaSeleccionada >= tablaProductos.getRowCount())
@@ -531,7 +573,7 @@ public class VtnProductos extends javax.swing.JInternalFrame
                 JOptionPane.showMessageDialog(this, "Error al eliminar el producto.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_eliminarBActionPerformed
 
     private void precioCompraJTActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_precioCompraJTActionPerformed
     {//GEN-HEADEREND:event_precioCompraJTActionPerformed
@@ -667,15 +709,15 @@ public class VtnProductos extends javax.swing.JInternalFrame
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> activoCB;
-    private javax.swing.JButton alta;
+    private javax.swing.JButton altaB;
     private javax.swing.JTextField buscar;
     private javax.swing.JComboBox<String> categoriaCB;
     private javax.swing.JTextField descripcionJT;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton eliminarB;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -686,6 +728,8 @@ public class VtnProductos extends javax.swing.JInternalFrame
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton limpiarB;
+    private javax.swing.JButton modificarB;
     private javax.swing.JTextField nombreJT;
     private javax.swing.JTextField precioCompraJT;
     private javax.swing.JTextField precioVentaJT;

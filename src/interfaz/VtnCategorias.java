@@ -58,6 +58,9 @@ public class VtnCategorias extends javax.swing.JInternalFrame
         jLabel6 = new javax.swing.JLabel();
         porcentajeJT = new javax.swing.JTextField();
         baja = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         addInternalFrameListener(new javax.swing.event.InternalFrameListener()
@@ -87,8 +90,10 @@ public class VtnCategorias extends javax.swing.JInternalFrame
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        tablaCategoria.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         tablaCategoria.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][]
             {
@@ -119,12 +124,17 @@ public class VtnCategorias extends javax.swing.JInternalFrame
         });
         jScrollPane1.setViewportView(tablaCategoria);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 770, -1));
-        jPanel1.add(categoriaJT, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 60, 370, -1));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 171, 770, 460));
 
+        categoriaJT.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jPanel1.add(categoriaJT, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 230, 350, -1));
+
+        jLabel2.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         jLabel2.setText("Nombre:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 40, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 210, -1, -1));
 
+        jButton1.setBackground(new java.awt.Color(51, 255, 51));
+        jButton1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         jButton1.setText("Aceptar");
         jButton1.addActionListener(new java.awt.event.ActionListener()
         {
@@ -133,23 +143,29 @@ public class VtnCategorias extends javax.swing.JInternalFrame
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 470, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 510, 100, 30));
 
         descripccionJT.setColumns(20);
+        descripccionJT.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         descripccionJT.setRows(5);
         jScrollPane2.setViewportView(descripccionJT);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 130, 370, -1));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 280, 350, -1));
 
-        jLabel3.setText("Descripccion");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 110, -1, -1));
+        jLabel3.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jLabel3.setText("Descripción:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 260, -1, -1));
 
+        jLabel1.setFont(new java.awt.Font("Arial Rounded MT Bold", 2, 48)); // NOI18N
         jLabel1.setText("Categorias");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 10, 100, 20));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 20, 270, -1));
 
+        activoCB.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         activoCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
-        jPanel1.add(activoCB, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 340, -1, -1));
+        jPanel1.add(activoCB, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 460, -1, -1));
 
+        jButton2.setBackground(new java.awt.Color(102, 204, 255));
+        jButton2.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         jButton2.setText("Modificar");
         jButton2.addActionListener(new java.awt.event.ActionListener()
         {
@@ -158,11 +174,13 @@ public class VtnCategorias extends javax.swing.JInternalFrame
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 470, -1, -1));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 510, 110, 30));
 
-        jLabel4.setText("Activo");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 320, -1, -1));
+        jLabel4.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jLabel4.setText("Activo:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 440, -1, -1));
 
+        jButton3.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         jButton3.setText("Limpiar");
         jButton3.addActionListener(new java.awt.event.ActionListener()
         {
@@ -171,13 +189,20 @@ public class VtnCategorias extends javax.swing.JInternalFrame
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 470, -1, -1));
-        jPanel1.add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 650, -1));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 510, 100, 30));
 
-        jLabel6.setText("Porcentaje");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 230, -1, -1));
-        jPanel1.add(porcentajeJT, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 250, 370, -1));
+        buscar.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jPanel1.add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 560, -1));
 
+        jLabel6.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jLabel6.setText("Porcentaje:");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 390, -1, -1));
+
+        porcentajeJT.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jPanel1.add(porcentajeJT, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 410, 350, -1));
+
+        baja.setBackground(new java.awt.Color(255, 51, 51));
+        baja.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         baja.setText("Baja");
         baja.addActionListener(new java.awt.event.ActionListener()
         {
@@ -186,9 +211,19 @@ public class VtnCategorias extends javax.swing.JInternalFrame
                 bajaActionPerformed(evt);
             }
         });
-        jPanel1.add(baja, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 50, -1, -1));
+        jPanel1.add(baja, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 110, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 540));
+        jPanel2.setBackground(new java.awt.Color(211, 247, 255));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 200, 390, 350));
+
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/etiquetado.png"))); // NOI18N
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 20, 70, 70));
+
+        jLabel5.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jLabel5.setText("Buscar:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 630));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -469,11 +504,14 @@ public class VtnCategorias extends javax.swing.JInternalFrame
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField porcentajeJT;

@@ -14,7 +14,7 @@ public class Conexion
 
     private static final String url = "jdbc:mysql://localhost:3306/supermercado"; 
     private static final String usuario = "root";
-    private static final String contraseña = "Emmanuel360";
+    private static final String contraseña = "";
 
     public static Connection conectar()
     {

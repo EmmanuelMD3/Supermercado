@@ -94,6 +94,10 @@ public class VtnEmpleado extends javax.swing.JInternalFrame
         jButton3 = new javax.swing.JButton();
         buscar = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
 
         setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         addInternalFrameListener(new javax.swing.event.InternalFrameListener()
@@ -123,8 +127,10 @@ public class VtnEmpleado extends javax.swing.JInternalFrame
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        tablaEmpleado.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         tablaEmpleado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][]
             {
@@ -155,37 +161,54 @@ public class VtnEmpleado extends javax.swing.JInternalFrame
         });
         jScrollPane1.setViewportView(tablaEmpleado);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 850, -1));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 181, 850, 450));
 
+        jLabel1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         jLabel1.setText("Nombre:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 10, -1, -1));
-        jPanel1.add(nombreJT, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 30, 140, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 70, -1, -1));
 
+        nombreJT.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jPanel1.add(nombreJT, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 90, 140, -1));
+
+        jLabel2.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         jLabel2.setText("Apellido:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 10, -1, -1));
-        jPanel1.add(apellidoJT, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 30, 150, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 70, -1, -1));
 
-        jLabel3.setText("Telefono:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 60, -1, -1));
-        jPanel1.add(telefonoJT, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 80, 300, -1));
-        jPanel1.add(coreoJT, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 130, 310, -1));
+        apellidoJT.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jPanel1.add(apellidoJT, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 90, 150, -1));
 
+        jLabel3.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jLabel3.setText("Teléfono:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 120, -1, -1));
+
+        telefonoJT.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jPanel1.add(telefonoJT, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 140, 300, -1));
+
+        coreoJT.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jPanel1.add(coreoJT, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 190, 300, -1));
+
+        direccionJT.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         direccionJT.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jPanel1.add(direccionJT, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 180, 310, -1));
+        jPanel1.add(direccionJT, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 240, 300, -1));
 
+        jLabel4.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         jLabel4.setText("Sueldo:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 260, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 320, -1, -1));
 
-        jLabel5.setText("Correo");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 110, -1, -1));
-        jPanel1.add(fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 230, 150, -1));
+        jLabel5.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jLabel5.setText("Correo:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 170, -1, -1));
+        jPanel1.add(fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 290, 150, -1));
 
-        jLabel6.setText("direccion");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 160, -1, -1));
+        jLabel6.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jLabel6.setText("Dirección:");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 220, -1, -1));
 
-        jLabel7.setText("Fecha contracion:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 210, -1, -1));
+        jLabel7.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jLabel7.setText("Fecha contración:");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 270, -1, -1));
 
+        sueldoJT.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         sueldoJT.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -193,8 +216,9 @@ public class VtnEmpleado extends javax.swing.JInternalFrame
                 sueldoJTActionPerformed(evt);
             }
         });
-        jPanel1.add(sueldoJT, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 280, 310, -1));
+        jPanel1.add(sueldoJT, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 340, 300, -1));
 
+        rolCB.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         rolCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Cajero", "Empleado" }));
         rolCB.addActionListener(new java.awt.event.ActionListener()
         {
@@ -203,25 +227,35 @@ public class VtnEmpleado extends javax.swing.JInternalFrame
                 rolCBActionPerformed(evt);
             }
         });
-        jPanel1.add(rolCB, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 330, -1, -1));
+        jPanel1.add(rolCB, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 390, -1, -1));
 
+        jLabel8.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         jLabel8.setText("Rol:");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 310, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 370, -1, -1));
 
-        jLabel9.setText("usuario:");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 360, -1, -1));
-        jPanel1.add(usuarioJT, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 380, 310, -1));
+        jLabel9.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jLabel9.setText("Usuario:");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 420, -1, -1));
 
+        usuarioJT.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jPanel1.add(usuarioJT, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 440, 300, -1));
+
+        jLabel10.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         jLabel10.setText("Activo:");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 310, -1, -1));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 370, -1, -1));
 
+        activoCB.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         activoCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
-        jPanel1.add(activoCB, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 330, 160, -1));
+        jPanel1.add(activoCB, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 390, 160, -1));
 
+        jLabel11.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         jLabel11.setText("Contraseña:");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 410, -1, -1));
-        jPanel1.add(contraseñaTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 430, 310, -1));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 470, -1, -1));
 
+        contraseñaTF.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jPanel1.add(contraseñaTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 490, 300, -1));
+
+        mostrarCheckBox.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         mostrarCheckBox.setText("Mostrar Contraseña");
         mostrarCheckBox.addActionListener(new java.awt.event.ActionListener()
         {
@@ -230,9 +264,11 @@ public class VtnEmpleado extends javax.swing.JInternalFrame
                 mostrarCheckBoxActionPerformed(evt);
             }
         });
-        jPanel1.add(mostrarCheckBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 460, -1, -1));
+        jPanel1.add(mostrarCheckBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 520, -1, -1));
 
-        jButton1.setText("ACEPTAR");
+        jButton1.setBackground(new java.awt.Color(51, 255, 51));
+        jButton1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jButton1.setText("Aceptar");
         jButton1.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -240,9 +276,11 @@ public class VtnEmpleado extends javax.swing.JInternalFrame
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 500, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 560, -1, 30));
 
-        jButton2.setText("MODIFICAR");
+        jButton2.setBackground(new java.awt.Color(102, 204, 255));
+        jButton2.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jButton2.setText("Modificar");
         jButton2.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -250,9 +288,10 @@ public class VtnEmpleado extends javax.swing.JInternalFrame
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 500, -1, -1));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 560, 100, 30));
 
-        jButton3.setText("LIMPIAR");
+        jButton3.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jButton3.setText("Limpiar");
         jButton3.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -260,10 +299,14 @@ public class VtnEmpleado extends javax.swing.JInternalFrame
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 500, -1, -1));
-        jPanel1.add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 630, -1));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 560, -1, 30));
 
-        jButton4.setText("BAJA");
+        buscar.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jPanel1.add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 550, -1));
+
+        jButton4.setBackground(new java.awt.Color(255, 51, 51));
+        jButton4.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jButton4.setText("Baja");
         jButton4.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -271,9 +314,23 @@ public class VtnEmpleado extends javax.swing.JInternalFrame
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 70, -1, -1));
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 130, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 540));
+        jLabel12.setFont(new java.awt.Font("Arial Rounded MT Bold", 2, 48)); // NOI18N
+        jLabel12.setText("Empleados");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 30, 270, -1));
+
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/verificacion-de-antecedentes.png"))); // NOI18N
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 0, 110, 110));
+
+        jLabel14.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jLabel14.setText("Buscar:");
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, -1, -1));
+
+        jPanel2.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 60, 320, 550));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 630));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -693,6 +750,9 @@ public class VtnEmpleado extends javax.swing.JInternalFrame
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -702,6 +762,7 @@ public class VtnEmpleado extends javax.swing.JInternalFrame
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JCheckBox mostrarCheckBox;
     private javax.swing.JTextField nombreJT;

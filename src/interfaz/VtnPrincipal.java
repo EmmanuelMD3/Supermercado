@@ -56,6 +56,8 @@ public class VtnPrincipal extends javax.swing.JFrame
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1200, 680));
+        setPreferredSize(new java.awt.Dimension(1200, 680));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         javax.swing.GroupLayout panelControlLayout = new javax.swing.GroupLayout(panelControl);
@@ -66,10 +68,10 @@ public class VtnPrincipal extends javax.swing.JFrame
         );
         panelControlLayout.setVerticalGroup(
             panelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 560, Short.MAX_VALUE)
+            .addGap(0, 650, Short.MAX_VALUE)
         );
 
-        getContentPane().add(panelControl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 560));
+        getContentPane().add(panelControl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 650));
 
         jMenuBar1.setPreferredSize(new java.awt.Dimension(171, 30));
 
@@ -165,7 +167,7 @@ public class VtnPrincipal extends javax.swing.JFrame
         jMenuBar1.add(menuCaja);
 
         jMenu9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iniciar-sesion.png"))); // NOI18N
-        jMenu9.setText("Login");
+        jMenu9.setText("Sesión");
         jMenu9.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
 
         jMenu10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/datos-del-usuario.png"))); // NOI18N
