@@ -5,6 +5,8 @@
 package interfaz;
 
 import dao.DetalleVentaDAO;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -28,6 +30,14 @@ public class VtnPrincipal extends javax.swing.JFrame
         menuCaja.setEnabled(false);
         opcCerrarSecion.setEnabled(false);
         menuDetalleVenta.setEnabled(false);
+        setIconImage(getIconImage());
+    }
+    
+    public Image getIconImage()
+    {
+        ImageIcon original = new ImageIcon(getClass().getResource("/imagenes/Logo.png"));
+        Image img = original.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+        return img;
     }
 
     /**
@@ -56,6 +66,7 @@ public class VtnPrincipal extends javax.swing.JFrame
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Supermercado");
         setMinimumSize(new java.awt.Dimension(1200, 680));
         setPreferredSize(new java.awt.Dimension(1200, 680));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());

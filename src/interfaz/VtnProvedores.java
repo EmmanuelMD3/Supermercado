@@ -59,7 +59,6 @@ public class VtnProvedores extends javax.swing.JInternalFrame
     {
 
         buscar = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -79,9 +78,11 @@ public class VtnProvedores extends javax.swing.JInternalFrame
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaProvedor = new javax.swing.JTable();
         jLabel9 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
@@ -117,73 +118,61 @@ public class VtnProvedores extends javax.swing.JInternalFrame
         buscar.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         getContentPane().add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 580, -1));
 
-        jLabel7.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/basura.png"))); // NOI18N
-        jLabel7.setText("Bajas");
-        jLabel7.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                jLabel7MouseClicked(evt);
-            }
-        });
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 110, -1, 30));
-
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel8.setFont(new java.awt.Font("Arial Rounded MT Bold", 2, 48)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 48)); // NOI18N
         jLabel8.setText("Proveedor");
-        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, 260, -1));
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, 260, -1));
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/proveedores.png"))); // NOI18N
-        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 0, 110, 80));
+        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 10, 110, 80));
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         jLabel1.setText("Nombre:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
 
         nombreJT.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
-        jPanel1.add(nombreJT, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 340, -1));
+        jPanel1.add(nombreJT, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 340, -1));
 
         jLabel2.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         jLabel2.setText("Contacto:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
 
         contactoJT.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
-        jPanel1.add(contactoJT, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 340, -1));
+        jPanel1.add(contactoJT, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 340, -1));
 
         jLabel3.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         jLabel3.setText("Teléfono:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, -1));
 
         telefonoJT.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
-        jPanel1.add(telefonoJT, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 340, -1));
+        jPanel1.add(telefonoJT, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 340, -1));
 
         jLabel4.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         jLabel4.setText("Correo electrónico:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, -1, -1));
 
         emailJT.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
-        jPanel1.add(emailJT, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 340, -1));
+        jPanel1.add(emailJT, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 340, -1));
 
         jLabel5.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         jLabel5.setText("Dirección:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, -1, -1));
 
         direccionJT.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
-        jPanel1.add(direccionJT, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 340, -1));
+        jPanel1.add(direccionJT, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 340, -1));
 
         jLabel6.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         jLabel6.setText("Activo:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, -1, -1));
 
         activoCB.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         activoCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ACTIVO", "INACTIVO" }));
-        jPanel1.add(activoCB, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, -1, -1));
+        jPanel1.add(activoCB, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, -1, -1));
 
         jButton1.setBackground(new java.awt.Color(51, 255, 51));
         jButton1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
@@ -195,7 +184,7 @@ public class VtnProvedores extends javax.swing.JInternalFrame
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 110, 30));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, 110, -1));
 
         jButton3.setBackground(new java.awt.Color(102, 204, 255));
         jButton3.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
@@ -207,7 +196,7 @@ public class VtnProvedores extends javax.swing.JInternalFrame
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 320, 110, 30));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 400, 110, -1));
 
         jButton2.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         jButton2.setText("Limpiar");
@@ -218,9 +207,13 @@ public class VtnProvedores extends javax.swing.JInternalFrame
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 320, 100, 30));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 400, 100, -1));
 
-        jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 170, 360, 370));
+        jLabel10.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 24)); // NOI18N
+        jLabel10.setText("DATOS");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 0, -1, -1));
+
+        jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 170, 360, 440));
 
         tablaProvedor.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         tablaProvedor.setModel(new javax.swing.table.DefaultTableModel(
@@ -258,6 +251,18 @@ public class VtnProvedores extends javax.swing.JInternalFrame
         jLabel9.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         jLabel9.setText("Buscar:");
         jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
+
+        jLabel7.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/basura.png"))); // NOI18N
+        jLabel7.setText("Bajas");
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jLabel7MouseClicked(evt);
+            }
+        });
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 110, -1, -1));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 630));
 
@@ -516,6 +521,7 @@ public class VtnProvedores extends javax.swing.JInternalFrame
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

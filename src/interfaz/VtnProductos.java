@@ -197,17 +197,17 @@ public class VtnProductos extends javax.swing.JInternalFrame
 
         jLabel4.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         jLabel4.setText("Stock inicial:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 200, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 200, -1, -1));
 
         precioVentaJT.setEditable(false);
-        precioVentaJT.setBackground(new java.awt.Color(69, 73, 74));
+        precioVentaJT.setBackground(new java.awt.Color(204, 204, 204));
         precioVentaJT.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         jPanel1.add(precioVentaJT, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, 250, -1));
 
         stockMinS.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         stockMinS.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
         stockMinS.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jPanel1.add(stockMinS, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 200, 100, 30));
+        jPanel1.add(stockMinS, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 220, 100, 30));
 
         jLabel5.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         jLabel5.setText(" Precio venta:");
@@ -223,11 +223,11 @@ public class VtnProductos extends javax.swing.JInternalFrame
 
         jLabel7.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         jLabel7.setText("Activo:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 120, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 200, -1, -1));
 
         activoCB.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         activoCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
-        jPanel1.add(activoCB, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 120, 100, 30));
+        jPanel1.add(activoCB, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 220, 100, 30));
 
         jLabel8.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         jLabel8.setText("Proveedor:");
@@ -247,7 +247,7 @@ public class VtnProductos extends javax.swing.JInternalFrame
                 altaBActionPerformed(evt);
             }
         });
-        jPanel1.add(altaB, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 120, 100, -1));
+        jPanel1.add(altaB, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 120, 110, -1));
 
         modificarB.setBackground(new java.awt.Color(102, 204, 255));
         modificarB.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
@@ -259,7 +259,7 @@ public class VtnProductos extends javax.swing.JInternalFrame
                 modificarBActionPerformed(evt);
             }
         });
-        jPanel1.add(modificarB, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 150, 110, -1));
+        jPanel1.add(modificarB, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 160, 110, -1));
 
         limpiarB.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         limpiarB.setText("Limpiar");
@@ -270,7 +270,7 @@ public class VtnProductos extends javax.swing.JInternalFrame
                 limpiarBActionPerformed(evt);
             }
         });
-        jPanel1.add(limpiarB, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 180, 90, -1));
+        jPanel1.add(limpiarB, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 200, 110, -1));
 
         buscar.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         jPanel1.add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 400, -1));
@@ -289,17 +289,17 @@ public class VtnProductos extends javax.swing.JInternalFrame
                 eliminarBActionPerformed(evt);
             }
         });
-        jPanel1.add(eliminarB, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 210, 100, -1));
+        jPanel1.add(eliminarB, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 240, 110, -1));
 
         stockInicialS.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         stockInicialS.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
-        jPanel1.add(stockInicialS, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 200, 90, 30));
+        jPanel1.add(stockInicialS, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 220, 90, 30));
 
         jLabel10.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         jLabel10.setText("Stock mínimo:");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 200, -1, -1));
 
-        jLabel11.setFont(new java.awt.Font("Arial Rounded MT Bold", 2, 48)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 48)); // NOI18N
         jLabel11.setText("Productos");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, 250, -1));
 

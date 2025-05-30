@@ -3,16 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Cassandra/Documents/NetBeansProjects/Supermercado/src/interfaz/VtnLogin.java</file>
-            <file>file:/C:/Users/Cassandra/Documents/NetBeansProjects/Supermercado/src/interfaz/VtnProductos.java</file>
-            <file>file:/C:/Users/Cassandra/Documents/NetBeansProjects/Supermercado/src/interfaz/VtnDetalleVenta.java</file>
-            <file>file:/C:/Users/Cassandra/Documents/NetBeansProjects/Supermercado/src/interfaz/VtnVenta.java</file>
-            <file>file:/C:/Users/Cassandra/Documents/NetBeansProjects/Supermercado/src/interfaz/VtnPrincipal.java</file>
-            <file>file:/C:/Users/Cassandra/Documents/NetBeansProjects/Supermercado/src/interfaz/VtnCategorias.java</file>
-            <file>file:/C:/Users/Cassandra/Documents/NetBeansProjects/Supermercado/src/interfaz/VtnProvedores.java</file>
-            <file>file:/C:/Users/Cassandra/Documents/NetBeansProjects/Supermercado/src/interfaz/VtnEmpleado.java</file>
-            <file>file:/C:/Users/Cassandra/Documents/NetBeansProjects/Supermercado/src/interfaz/VtnClientes.java</file>
-            <file>file:/C:/Users/Cassandra/Documents/NetBeansProjects/Supermercado/src/conexion/Conexion.java</file>
+            <file>file:/C:/Users/chemo/Documents/Universidad/Sexto%20Semestre/Base%20de%20datos%20avanzada/Supermercado/src/interfaz/VtnLogin.java</file>
+            <file>file:/C:/Users/chemo/Documents/Universidad/Sexto%20Semestre/Base%20de%20datos%20avanzada/Supermercado/src/interfaz/VtnPrincipal.java</file>
+            <file>file:/C:/Users/chemo/Documents/Universidad/Sexto%20Semestre/Base%20de%20datos%20avanzada/Supermercado/src/interfaz/VtnDetalleVenta.java</file>
+            <file>file:/C:/Users/chemo/Documents/Universidad/Sexto%20Semestre/Base%20de%20datos%20avanzada/Supermercado/src/conexion/Conexion.java</file>
+            <file>file:/C:/Users/chemo/Documents/Universidad/Sexto%20Semestre/Base%20de%20datos%20avanzada/Supermercado/src/bd/Supermercado.sql</file>
         </group>
     </open-files>
 </project-private>

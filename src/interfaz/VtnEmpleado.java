@@ -47,10 +47,10 @@ public class VtnEmpleado extends javax.swing.JInternalFrame
             @Override
             public void changedUpdate(javax.swing.event.DocumentEvent e)
             {
-               filtrarEmpleados();
+                filtrarEmpleados();
             }
         });
-        
+
     }
 
     /**
@@ -89,15 +89,16 @@ public class VtnEmpleado extends javax.swing.JInternalFrame
         jLabel11 = new javax.swing.JLabel();
         contraseñaTF = new javax.swing.JPasswordField();
         mostrarCheckBox = new javax.swing.JCheckBox();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         buscar = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
+        jLabel16 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jLabel15 = new javax.swing.JLabel();
 
         setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         addInternalFrameListener(new javax.swing.event.InternalFrameListener()
@@ -266,17 +267,37 @@ public class VtnEmpleado extends javax.swing.JInternalFrame
         });
         jPanel1.add(mostrarCheckBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 520, -1, -1));
 
-        jButton1.setBackground(new java.awt.Color(51, 255, 51));
-        jButton1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
-        jButton1.setText("Aceptar");
-        jButton1.addActionListener(new java.awt.event.ActionListener()
+        buscar.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jPanel1.add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 670, -1));
+
+        jLabel12.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 48)); // NOI18N
+        jLabel12.setText("Empleados");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 40, 270, -1));
+
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/verificacion-de-antecedentes.png"))); // NOI18N
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 10, 110, 110));
+
+        jLabel14.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
+        jLabel14.setText("Buscar:");
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
+
+        jPanel2.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel16.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 24)); // NOI18N
+        jLabel16.setText("DATOS");
+        jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 0, -1, -1));
+
+        jButton3.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jButton3.setText("Limpiar");
+        jButton3.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                jButton1ActionPerformed(evt);
+                jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 560, -1, 30));
+        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 540, 90, -1));
 
         jButton2.setBackground(new java.awt.Color(102, 204, 255));
         jButton2.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
@@ -288,47 +309,33 @@ public class VtnEmpleado extends javax.swing.JInternalFrame
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 560, 100, 30));
+        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 540, 100, -1));
 
-        jButton3.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
-        jButton3.setText("Limpiar");
-        jButton3.addActionListener(new java.awt.event.ActionListener()
+        jButton1.setBackground(new java.awt.Color(51, 255, 51));
+        jButton1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jButton1.setText("Aceptar");
+        jButton1.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                jButton3ActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 560, -1, 30));
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 540, 100, -1));
 
-        buscar.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
-        jPanel1.add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 550, -1));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 30, 330, 580));
 
-        jButton4.setBackground(new java.awt.Color(255, 51, 51));
-        jButton4.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
-        jButton4.setText("Baja");
-        jButton4.addActionListener(new java.awt.event.ActionListener()
+        jLabel15.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/basura.png"))); // NOI18N
+        jLabel15.setText("Baja");
+        jLabel15.addMouseListener(new java.awt.event.MouseAdapter()
         {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
+            public void mouseClicked(java.awt.event.MouseEvent evt)
             {
-                jButton4ActionPerformed(evt);
+                jLabel15MouseClicked(evt);
             }
         });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 130, -1, -1));
-
-        jLabel12.setFont(new java.awt.Font("Arial Rounded MT Bold", 2, 48)); // NOI18N
-        jLabel12.setText("Empleados");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 30, 270, -1));
-
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/verificacion-de-antecedentes.png"))); // NOI18N
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 0, 110, 110));
-
-        jLabel14.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
-        jLabel14.setText("Buscar:");
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, -1, -1));
-
-        jPanel2.setBackground(new java.awt.Color(204, 204, 255));
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 60, 320, 550));
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 120, 70, 40));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 630));
 
@@ -415,57 +422,6 @@ public class VtnEmpleado extends javax.swing.JInternalFrame
     {//GEN-HEADEREND:event_formInternalFrameOpened
         llenarTablaEmpleados();
     }//GEN-LAST:event_formInternalFrameOpened
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton4ActionPerformed
-    {//GEN-HEADEREND:event_jButton4ActionPerformed
-        int filaSeleccionada = tablaEmpleado.getSelectedRow();
-
-        if (filaSeleccionada < 0 || filaSeleccionada >= tablaEmpleado.getRowCount())
-        {
-            JOptionPane.showMessageDialog(this, "Debe seleccionar un empleado válido.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        int confirmacion = JOptionPane.showConfirmDialog(
-                this,
-                "¿Está seguro de que desea eliminar el epleado seleccionado?",
-                "Confirmación",
-                JOptionPane.YES_NO_OPTION,
-                JOptionPane.QUESTION_MESSAGE
-        );
-
-        if (confirmacion == JOptionPane.YES_OPTION)
-        {
-            DefaultTableModel modeloTabla = (DefaultTableModel) tablaEmpleado.getModel();
-            Object valorCelda = modeloTabla.getValueAt(filaSeleccionada, 0);
-
-            int empleadoID;
-            try
-            {
-                empleadoID = Integer.parseInt(valorCelda.toString());
-            } catch (NumberFormatException e)
-            {
-                JOptionPane.showMessageDialog(this, "Error al obtener el ID del cliente.", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-
-            EmpleadoDAO empleadoDAO = new EmpleadoDAO();
-            boolean exito = empleadoDAO.eliminarEmpleado(empleadoID);
-
-            if (exito)
-            {
-                JOptionPane.showMessageDialog(this, "Cliente eliminado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-                llenarTablaEmpleados();
-                CtrlInterfaz.limpia(nombreJT, apellidoJT, telefonoJT, coreoJT, direccionJT, contraseñaTF, sueldoJT, usuarioJT);
-                fecha.setDate(null);
-                rolCB.setSelectedIndex(0);
-                activoCB.setSelectedIndex(0);
-            } else
-            {
-                JOptionPane.showMessageDialog(this, "Error al eliminar el cliente.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-    }//GEN-LAST:event_jButton4ActionPerformed
 
     private void tablaEmpleadoMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_tablaEmpleadoMouseClicked
     {//GEN-HEADEREND:event_tablaEmpleadoMouseClicked
@@ -632,6 +588,57 @@ public class VtnEmpleado extends javax.swing.JInternalFrame
         // TODO add your handling code here:
     }//GEN-LAST:event_rolCBActionPerformed
 
+    private void jLabel15MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel15MouseClicked
+    {//GEN-HEADEREND:event_jLabel15MouseClicked
+        int filaSeleccionada = tablaEmpleado.getSelectedRow();
+
+        if (filaSeleccionada < 0 || filaSeleccionada >= tablaEmpleado.getRowCount())
+        {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un empleado válido.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        int confirmacion = JOptionPane.showConfirmDialog(
+                this,
+                "¿Está seguro de que desea eliminar el epleado seleccionado?",
+                "Confirmación",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE
+        );
+
+        if (confirmacion == JOptionPane.YES_OPTION)
+        {
+            DefaultTableModel modeloTabla = (DefaultTableModel) tablaEmpleado.getModel();
+            Object valorCelda = modeloTabla.getValueAt(filaSeleccionada, 0);
+
+            int empleadoID;
+            try
+            {
+                empleadoID = Integer.parseInt(valorCelda.toString());
+            } catch (NumberFormatException e)
+            {
+                JOptionPane.showMessageDialog(this, "Error al obtener el ID del cliente.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            EmpleadoDAO empleadoDAO = new EmpleadoDAO();
+            boolean exito = empleadoDAO.eliminarEmpleado(empleadoID);
+
+            if (exito)
+            {
+                JOptionPane.showMessageDialog(this, "Cliente eliminado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                llenarTablaEmpleados();
+                CtrlInterfaz.limpia(nombreJT, apellidoJT, telefonoJT, coreoJT, direccionJT, contraseñaTF, sueldoJT, usuarioJT);
+                fecha.setDate(null);
+                rolCB.setSelectedIndex(0);
+                activoCB.setSelectedIndex(0);
+            } else
+            {
+                JOptionPane.showMessageDialog(this, "Error al eliminar el cliente.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_jLabel15MouseClicked
+
     public void lipiarCampos()
     {
         CtrlInterfaz.limpia(nombreJT, apellidoJT, telefonoJT, coreoJT, direccionJT, sueldoJT, usuarioJT, contraseñaTF);
@@ -746,13 +753,14 @@ public class VtnEmpleado extends javax.swing.JInternalFrame
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

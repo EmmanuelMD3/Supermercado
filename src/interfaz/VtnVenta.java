@@ -53,17 +53,8 @@ public class VtnVenta extends javax.swing.JInternalFrame
     {
 
         jPanel1 = new javax.swing.JPanel();
-        categoriaCB = new javax.swing.JComboBox<>();
-        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaProductos = new javax.swing.JTable();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tablaCarrito = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        cantidadJS = new javax.swing.JSpinner();
-        jLabel2 = new javax.swing.JLabel();
         campoTotalVenta = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         campoIVA = new javax.swing.JTextField();
@@ -72,18 +63,27 @@ public class VtnVenta extends javax.swing.JInternalFrame
         jLabel5 = new javax.swing.JLabel();
         campoSubtotal = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         clienteCB = new javax.swing.JComboBox<>();
         pagoCB = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
+        jButton5 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablaCarrito = new javax.swing.JTable();
+        jLabel11 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        categoriaCB = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        cantidadJS = new javax.swing.JSpinner();
+        jLabel9 = new javax.swing.JLabel();
 
         setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         addInternalFrameListener(new javax.swing.event.InternalFrameListener()
@@ -116,21 +116,6 @@ public class VtnVenta extends javax.swing.JInternalFrame
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        categoriaCB.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
-        categoriaCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        categoriaCB.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                categoriaCBActionPerformed(evt);
-            }
-        });
-        jPanel1.add(categoriaCB, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, 230, -1));
-
-        jLabel1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
-        jLabel1.setText("Categoria:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, -1, -1));
-
         tablaProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][]
             {
@@ -154,77 +139,7 @@ public class VtnVenta extends javax.swing.JInternalFrame
         });
         jScrollPane1.setViewportView(tablaProductos);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 380, 370));
-
-        tablaCarrito.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][]
-            {
-
-            },
-            new String []
-            {
-                "ID PRODUCTO", "PRODUCTO", "CANTIDAD", "PREC. UNITARIO", "TOTAL"
-            }
-        )
-        {
-            boolean[] canEdit = new boolean []
-            {
-                false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex)
-            {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane2.setViewportView(tablaCarrito);
-
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 40, 610, 340));
-
-        jButton1.setBackground(new java.awt.Color(51, 255, 51));
-        jButton1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
-        jButton1.setText("Agregar");
-        jButton1.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 90, 30));
-
-        jButton2.setBackground(new java.awt.Color(255, 51, 51));
-        jButton2.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
-        jButton2.setText("Eliminar");
-        jButton2.setToolTipText("");
-        jButton2.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 190, 90, 30));
-
-        jButton3.setBackground(new java.awt.Color(102, 204, 255));
-        jButton3.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
-        jButton3.setText("Modificar");
-        jButton3.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 190, 120, 30));
-
-        cantidadJS.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
-        cantidadJS.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
-        jPanel1.add(cantidadJS, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 120, -1));
-
-        jLabel2.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
-        jLabel2.setText("Cantidad:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 380, 360));
 
         campoTotalVenta.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         jPanel1.add(campoTotalVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 520, 140, -1));
@@ -254,30 +169,6 @@ public class VtnVenta extends javax.swing.JInternalFrame
         jLabel6.setText("Subtotal:");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 400, -1, -1));
 
-        jButton4.setBackground(new java.awt.Color(51, 255, 51));
-        jButton4.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
-        jButton4.setText("Pagar");
-        jButton4.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 570, -1, -1));
-
-        jButton5.setBackground(new java.awt.Color(255, 51, 51));
-        jButton5.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
-        jButton5.setText("Cancelar");
-        jButton5.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                jButton5ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 570, -1, -1));
-
         jLabel7.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         jLabel7.setText("Cliente:");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 400, 60, -1));
@@ -294,25 +185,138 @@ public class VtnVenta extends javax.swing.JInternalFrame
         jLabel8.setText("Metodo de pago:");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 440, 120, -1));
 
-        jLabel11.setFont(new java.awt.Font("Arial Rounded MT Bold", 2, 24)); // NOI18N
-        jLabel11.setText("Carrito");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 10, 100, 20));
-
-        jLabel9.setFont(new java.awt.Font("Arial Rounded MT Bold", 2, 24)); // NOI18N
-        jLabel9.setText("Busqueda de productos");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, 290, 30));
-
         jPanel2.setBackground(new java.awt.Color(178, 220, 255));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButton5.setBackground(new java.awt.Color(255, 51, 51));
+        jButton5.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jButton5.setText("Cancelar");
+        jButton5.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 550, -1, -1));
+
+        jButton4.setBackground(new java.awt.Color(51, 255, 51));
+        jButton4.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jButton4.setText("Pagar");
+        jButton4.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 550, 90, -1));
+
+        tablaCarrito.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][]
+            {
+
+            },
+            new String []
+            {
+                "ID PRODUCTO", "PRODUCTO", "CANTIDAD", "PREC. UNITARIO", "TOTAL"
+            }
+        )
+        {
+            boolean[] canEdit = new boolean []
+            {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex)
+            {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tablaCarrito);
+
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 610, 330));
+
+        jLabel11.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 24)); // NOI18N
+        jLabel11.setText("Carrito");
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 100, 20));
+
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 20, 640, 590));
 
-        jLabel10.setFont(new java.awt.Font("Arial Rounded MT Bold", 2, 48)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 48)); // NOI18N
         jLabel10.setText("Caja");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 0, 120, -1));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, 120, -1));
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/caja-registradora.png"))); // NOI18N
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, 80, 80));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 0, 80, 80));
 
         jPanel3.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButton1.setBackground(new java.awt.Color(51, 255, 51));
+        jButton1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jButton1.setText("Agregar");
+        jButton1.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 100, -1));
+
+        jButton2.setBackground(new java.awt.Color(255, 51, 51));
+        jButton2.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jButton2.setText("Eliminar");
+        jButton2.setToolTipText("");
+        jButton2.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, 100, -1));
+
+        jButton3.setBackground(new java.awt.Color(102, 204, 255));
+        jButton3.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jButton3.setText("Modificar");
+        jButton3.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 120, 100, -1));
+
+        jLabel1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jLabel1.setText("Categoria:");
+        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
+
+        categoriaCB.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        categoriaCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        categoriaCB.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                categoriaCBActionPerformed(evt);
+            }
+        });
+        jPanel3.add(categoriaCB, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 230, -1));
+
+        jLabel2.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jLabel2.setText("Cantidad:");
+        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
+
+        cantidadJS.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        cantidadJS.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+        jPanel3.add(cantidadJS, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 120, -1));
+
+        jLabel9.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 24)); // NOI18N
+        jLabel9.setText("Busqueda de productos");
+        jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 290, 30));
+
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 400, 520));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 630));

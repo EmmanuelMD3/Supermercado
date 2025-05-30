@@ -8,6 +8,7 @@ import cjb.ci.CtrlInterfaz;
 import dao.EmpleadoDAO;
 import java.awt.Image;
 import java.awt.Toolkit;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import modelo.Empleado;
 
@@ -29,15 +30,16 @@ public class VtnLogin extends javax.swing.JDialog
         super(parent, modal);
         initComponents();
         this.principal = principal;
+        setIconImage(getIconImage());
 
     }
 
-    public Image getIconImage()
+     public Image getIconImage()
     {
-        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("imagenes/Logo.png"));
-        return retValue;
+        ImageIcon original = new ImageIcon(getClass().getResource("/imagenes/Logo.png"));
+        Image img = original.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+        return img;
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
